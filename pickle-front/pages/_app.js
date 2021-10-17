@@ -1,16 +1,17 @@
-import '../style/taillwind.css'
-import Head from 'next/head';
+import Head from "next/head";
 
-function MyApp({ Component }) {
+import "../style/taillwind.css";
+import wrapper from "../store/configureStore";
+
+function App({ Component }) {
   return (
-      <>
-        <Head>
-          <meta charSet="utf-8" />
-          <title>Pickle</title>
-        </Head>
-        <Component />
-      </>
-  )
+    <>
+      <Head>
+        <title>Pickle</title>
+      </Head>
+      <Component />
+    </>
+  );
 }
 
-export default MyApp
+export default wrapper.withRedux(App);
