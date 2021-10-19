@@ -4,8 +4,8 @@ const passport = require("passport");
 
 const { User } = require("../models");
 
+// ===== 유저 정보를 불러온다. =====
 router.get("/", (req, res) => {
-  console.log("!!!", req.user, "!!!");
   if (req.user) {
     res.send(req.user.dataValues);
   } else {
@@ -13,8 +13,8 @@ router.get("/", (req, res) => {
   }
 });
 
+// ===== 카카오 로그인 =====
 router.get("/kakao", passport.authenticate("kakao"));
-// router.get("/naver", passport.authenticate("naver"));
 
 router.get(
   "/kakao/callback",
@@ -22,10 +22,26 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    // console.log("$$$", req.user.dataValues, "$$$");
     res.redirect("http://localhost:3000");
   }
 );
+
+// ===== 구글 로그인 =====
+
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    res.redirect("http://localhost:3000");
+  }
+);
+
+// ===== 로그아웃 =====
 
 router.post("/logout", (req, res) => {
   req.logout();

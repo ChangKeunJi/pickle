@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = (db) => {
-    db.User.hasMany(db.Url);
-    db.User.hasMany(db.Category);
+    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Directory);
   };
   return User;
 };

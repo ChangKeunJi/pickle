@@ -1,11 +1,12 @@
 const passport = require("passport");
-const naver = require("./naver");
 const kakao = require("./kakao");
+const google = require("./google");
 
 const { User } = require("../models");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    console.log(user);
     done(null, user.id);
   });
 
@@ -19,5 +20,5 @@ module.exports = () => {
     }
   });
   kakao();
-  naver();
+  google();
 };

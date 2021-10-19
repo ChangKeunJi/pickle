@@ -11,13 +11,15 @@ const sequelize = new Sequelize(
   config
 );
 
+sequelize.sync({ force: true });
+
 const user = require("./user")(sequelize, Sequelize);
-const url = require("./url")(sequelize, Sequelize);
-const category = require("./category")(sequelize, Sequelize);
+const post = require("./post")(sequelize, Sequelize);
+const directory = require("./directory")(sequelize, Sequelize);
 
 db.User = user;
-db.Url = url;
-db.Category = category;
+db.Post = post;
+db.Directory = directory;
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

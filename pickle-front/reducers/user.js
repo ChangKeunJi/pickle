@@ -1,13 +1,13 @@
 import produce from "immer";
 
 export const initialState = {
-  // 로그인 시도
-  loadMyInfoLoading: false, // 유저 정보 가져오기 시도중
+  loadMyInfoLoading: false,
   loadMyInfoDone: false,
   loadMyInfoError: null,
-  logOutLoading: false, // 로그아웃 시도중
+  logOutLoading: false,
   logOutDone: false,
   logOutError: null,
+  directories: [],
   me: null,
 };
 

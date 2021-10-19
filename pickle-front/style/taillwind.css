@@ -2,7 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/*@layer base {*/
+/*    .directory-flex > div {*/
+/*        */
+/*    }*/
+/*}*/
+
 @layer utilities {
+
+    * {
+        box-sizing: border-box;
+    }
+
     .flex-center {
         display:flex;
         justify-content: center;
@@ -12,4 +23,71 @@
     .button-hover {
         --tw-translate-x: 12px;
     }
+
+    .border-radius {
+        border-radius: 12px;
+    }
+
+    .button-width {
+        width:300px;
+    }
+
+    .button-height {
+        height:45px;
+    }
+
+    .cursor-pointer {
+        cursor:pointer;
+    }
+
+    .add-btn-hover {
+
+    }
+
+    .directory-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dir-item {
+        height: 50px;
+        width:100%;
+        display: flex;
+        padding-left: 2rem;
+        padding-right: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        cursor:pointer;
+    }
+
+    .dir-item:hover {
+        background:#DAD9D4;
+    }
+
+    .dir-item::before {
+        position:absolute;
+        content:">";
+        margin-right: 10px;
+        left:1rem;
+    }
+
+
+    /*.directory-flex > * {*/
+    /*    height: 40px;*/
+    /*    width:100%;*/
+    /*    display: flex;*/
+    /*    padding-left: 2rem;*/
+    /*    justify-content: flex-start;*/
+    /*    align-items: center;*/
+    /*    cursor:pointer;*/
+    /*}*/
+
+    /*.directory-flex > *:hover {*/
+    /*    background:#DAD9D4;*/
+    /*}*/
 }
+    /*.directory-flex > *::before {*/
+    /*    content:">";*/
+    /*    margin-right: 10px;*/
+    /*}*/

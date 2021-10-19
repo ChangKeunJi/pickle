@@ -16,6 +16,15 @@ module.exports = {
       "dark-nav": "#373C3F",
       "light-nav-hover": "#DAD9D4",
       "dark-nav-hover": "#474C50",
+      "user-profile": "#f5691e",
+      "user-profile-hover": "#5bc771",
+      white: "#FFFFFF",
+      black: "#000000",
+    },
+    screens: {
+      sm: "430px",
+      md: "768px",
+      lg: "1024px",
     },
     container: {
       center: true,

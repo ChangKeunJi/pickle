@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const Url = sequelize.define(
-    "Url",
+  const Post = sequelize.define(
+    "Post",
     {
       url: {
         type: DataTypes.TEXT,
@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8mb4_general_ci",
     }
   );
-  Url.associate = (db) => {
-    db.Url.belongsTo(db.User);
-    db.Url.hasMany(db.Category);
+  Post.associate = (db) => {
+    db.Post.belongsTo(db.User);
+    db.Post.belongsToMany(db.Directory, { through: "DirPost" });
   };
-  return Url;
+  return Post;
 };
