@@ -2,9 +2,9 @@ import produce from "immer";
 
 const initialState = {
   allDirs: [
-    { id: 1, title: "Next" },
-    { id: 2, title: "React" },
-    { id: 3, title: "MySql" },
+    { id: "0", title: "Next" },
+    { id: "1", title: "React" },
+    { id: "2", title: "MySql" },
   ],
   dir: "",
 };

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DotsHorizontalIcon } from "@heroicons/react/outline";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -25,12 +26,6 @@ const DirDropdown = () => {
           <Menu.Items className="origin-top-right= absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
               <DirModal title={"수정"} />
-              {/*<a*/}
-              {/*  href="#"*/}
-              {/*  className="block px-4 py-2 text-sm text-gray-700 hover:bg-light-nav"*/}
-              {/*>*/}
-              {/*  수정*/}
-              {/*</a>*/}
             </Menu.Item>
             <Menu.Item>
               <a

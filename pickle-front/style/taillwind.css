@@ -54,7 +54,7 @@
         height: 50px;
         width:100%;
         display: flex;
-        padding-left: 2rem;
+        padding-left: 2.5rem;
         padding-right: 1rem;
         justify-content: space-between;
         align-items: center;
@@ -71,6 +71,8 @@
         margin-right: 10px;
         left:1rem;
     }
+
+
 
 
     /*.directory-flex > * {*/

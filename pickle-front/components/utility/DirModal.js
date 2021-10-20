@@ -20,7 +20,7 @@ const DirModal = ({ title }) => {
           수정
         </p>
       ) : (
-        <PlusSmIcon className="w-10 h-10" onClick={onClickAddDir} />
+        <PlusSmIcon className="w-7 h-7" onClick={onClickAddDir} />
       )}
       <div>
         <Transition.Root show={open} as={Fragment}>
