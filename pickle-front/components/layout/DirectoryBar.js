@@ -1,14 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
 import { resetServerContext } from "react-beautiful-dnd";
 
 import Directory from "../component/Directory";
 import DirModal from "../utility/DirModal";
 import { useSelector } from "react-redux";
-
-// 스타일드 컴포넌트 없이 컴포넌트 내 속성 isDragging 을 인식하지 못한다 왜??
-const Empty = styled.div``;
 
 const DirectoryBar = () => {
   const { allDirs } = useSelector((state) => state.directory);
@@ -40,15 +36,7 @@ const DirectoryBar = () => {
     [state],
   );
 
-  // =============================================
-  // SSR 에서 react-beautiful-dnd 사용할 때 나타나는 에러 해결하기 위해 필요함
-  //https://github.com/atlassian/react-beautiful-dnd/issues/1756#issuecomment-735369084
-  // const [winReady, setwinReady] = useState(false);
-  // useEffect(() => {
-  //   setwinReady(true);
-  // }, []);
   resetServerContext();
-  // ==============================================
 
   return (
     <div>
@@ -63,12 +51,12 @@ const DirectoryBar = () => {
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="dirs">
               {(provided) => (
-                <Empty {...provided.droppableProps} ref={provided.innerRef}>
+                <div {...provided.droppableProps} ref={provided.innerRef}>
                   {state.map((dir, index) => {
                     return <Directory key={dir.id} dir={dir} index={index} />;
                   })}
                   {provided.placeholder}
-                </Empty>
+                </div>
               )}
             </Droppable>
           </DragDropContext>
@@ -90,3 +78,12 @@ export default DirectoryBar;
 // resetServerContext()
 
 // https://github.com/atlassian/react-beautiful-dnd/issues/1756
+
+// =============================================
+// SSR 에서 react-beautiful-dnd 사용할 때 나타나는 에러 해결하기 위해 필요함
+//https://github.com/atlassian/react-beautiful-dnd/issues/1756#issuecomment-735369084
+// const [winReady, setwinReady] = useState(false);
+// useEffect(() => {
+//   setwinReady(true);
+// }, []);
+// ==============================================
