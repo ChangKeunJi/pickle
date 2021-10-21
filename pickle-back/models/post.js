@@ -4,11 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     "Post",
     {
       url: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       thumbnail: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
       },
       title: {
         type: DataTypes.STRING(20),

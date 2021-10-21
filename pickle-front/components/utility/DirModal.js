@@ -1,14 +1,27 @@
 import { PlusSmIcon } from "@heroicons/react/outline";
 import { useCallback, useState, useRef, Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
+import useInput from "../../hooks/useInput";
+import { ADD_DIR_REQUEST } from "../../reducers/directory";
 
 const DirModal = ({ title }) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [dirValue, onChangeDirValue] = useInput("");
+
   const cancelButtonRef = useRef(null);
 
   const onClickAddDir = useCallback(() => {
     setOpen((open) => !open);
   }, []);
+
+  const onSubmit = useCallback(() => {
+    dispatch({
+      type: ADD_DIR_REQUEST,
+      data: { name: dirValue },
+    });
+  }, [dirValue]);
 
   return (
     <div className="hover:bg-light-nav rounded-full cursor-pointer hover:bg-light-nav-hover">
@@ -22,6 +35,7 @@ const DirModal = ({ title }) => {
       ) : (
         <PlusSmIcon className="w-7 h-7" onClick={onClickAddDir} />
       )}
+
       <div>
         <Transition.Root show={open} as={Fragment}>
           <Dialog
@@ -77,6 +91,8 @@ const DirModal = ({ title }) => {
                               id="price"
                               className="py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                               placeholder="카테고리 이름"
+                              onChange={onChangeDirValue}
+                              value={dirValue}
                             />
                           </div>
                         </div>
@@ -88,6 +104,7 @@ const DirModal = ({ title }) => {
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-light-font shadow-sm px-4 py-2 text-base font-medium hover:bg-light-nav focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={() => setOpen(false)}
+                      onClick={onSubmit}
                     >
                       추가하기
                     </button>

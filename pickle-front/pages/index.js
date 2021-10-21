@@ -9,9 +9,9 @@ import wrapper from "../store/configureStore";
 import { LOAD_MY_INFO_REQUEST, LOG_OUT_REQUEST } from "../reducers/user";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LOAD_MY_DIR_REQUEST } from "../reducers/directory";
 
 const Home = () => {
-  const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -47,11 +47,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       type: LOAD_MY_INFO_REQUEST,
     });
 
+    store.dispatch({
+      type: LOAD_MY_DIR_REQUEST,
+    });
+
     store.dispatch(END);
     await store.sagaTask.toPromise();
 
     const { user } = store.getState();
-
     if (!user.me) {
       return {
         redirect: {
@@ -64,4 +67,3 @@ export const getServerSideProps = wrapper.getServerSideProps(
 );
 
 export default Home;
-// Cookie 가 없으면 로그인화면으로 이동

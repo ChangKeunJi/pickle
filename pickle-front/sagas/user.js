@@ -8,18 +8,21 @@ import {
   LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
+  UPDATE_DIR_ORDER_FAILURE,
+  UPDATE_DIR_ORDER_REQUEST,
+  UPDATE_DIR_ORDER_SUCCESS,
 } from "../reducers/user";
 import Router from "next/router";
 
 //! ===== 유저 정보 불러오기 =====
 
-async function logInAPI(data) {
+async function logInAPI() {
   return axios.get("/login");
 }
 
-function* logIn(action) {
+function* logIn() {
   try {
-    const result = yield call(logInAPI, action.data);
+    const result = yield call(logInAPI);
 
     yield put({
       type: LOAD_MY_INFO_SUCCESS,

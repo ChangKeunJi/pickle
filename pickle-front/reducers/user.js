@@ -7,7 +7,6 @@ export const initialState = {
   logOutLoading: false,
   logOutDone: false,
   logOutError: null,
-  directories: [],
   me: null,
 };
 

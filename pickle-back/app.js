@@ -10,6 +10,7 @@ const helmet = require("helmet");
 
 const urlRouter = require("./routes/url");
 const loginRouter = require("./routes/login");
+const directoryRouter = require("./routes/directory");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -61,6 +62,7 @@ app.get("/", (req, res) => {
 
 app.use("/url", urlRouter);
 app.use("/login", loginRouter);
+app.use("/directory", directoryRouter);
 
 app.listen(3065, () => {
   console.log("실행 중");

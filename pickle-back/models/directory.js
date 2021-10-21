@@ -4,11 +4,19 @@ module.exports = (sequelize, DataTypes) => {
     "Directory",
     {
       name: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING("30"),
         allowNull: false,
       },
-      // UserId
-      // PostId
+      _id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      order: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
     },
     {
       charset: "utf8mb4",

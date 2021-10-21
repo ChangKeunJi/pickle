@@ -81,7 +81,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(END);
     await store.sagaTask.toPromise();
 
-    const user = store.getState().user;
+    const { user } = store.getState();
 
     if (user.me) {
       return {

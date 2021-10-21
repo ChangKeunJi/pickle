@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(30),
         allowNull: false,
       },
-      // id는 mySql에서 자동으로 만들어준다
     },
     {
       charset: "utf8",

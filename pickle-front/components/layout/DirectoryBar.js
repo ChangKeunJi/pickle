@@ -1,14 +1,24 @@
-import { useCallback, useState } from "react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { resetServerContext } from "react-beautiful-dnd";
+import { useCallback, useEffect, useState } from "react";
+import {
+  DragDropContext,
+  Droppable,
+  resetServerContext,
+} from "react-beautiful-dnd";
 
 import Directory from "../component/Directory";
 import DirModal from "../utility/DirModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const DirectoryBar = () => {
+  const dispatch = useDispatch();
   const { allDirs } = useSelector((state) => state.directory);
+  const { order } = useSelector((state) => state.user.me);
   const [state, setState] = useState(allDirs);
+
+  useEffect(() => {
+    console.log(allDirs);
+    setState(allDirs);
+  }, [allDirs]);
 
   const onDragEnd = useCallback(
     (result) => {
@@ -31,6 +41,7 @@ const DirectoryBar = () => {
       const newAllDirs = Array.from(state);
       const [removed] = newAllDirs.splice(source.index, 1);
       newAllDirs.splice(destination.index, 0, removed);
+      console.log(newAllDirs);
       setState(newAllDirs);
     },
     [state],
@@ -52,9 +63,13 @@ const DirectoryBar = () => {
             <Droppable droppableId="dirs">
               {(provided) => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {state.map((dir, index) => {
-                    return <Directory key={dir.id} dir={dir} index={index} />;
-                  })}
+                  {state
+                    ? state.map((dir, index) => {
+                        return (
+                          <Directory key={dir.id} dir={dir} index={index} />
+                        );
+                      })
+                    : "null"}
                   {provided.placeholder}
                 </div>
               )}

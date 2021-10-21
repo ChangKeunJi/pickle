@@ -7,14 +7,14 @@ const Directory = ({ dir, index }) => {
   const [hover, setHover] = useState(false);
 
   // 이름이 일정 길이 이상 넘어가면 "..." 처리
-  let title = dir.title;
-  if (title.length > 16) {
-    title = title.slice(0, 16);
-    title += "...";
+  let name = dir.name;
+  if (name.length > 16) {
+    name = name.slice(0, 16);
+    name += "...";
   }
 
   return (
-    <Draggable key={dir.id} index={index} draggableId={dir.id}>
+    <Draggable key={dir.id} index={index} draggableId={String(dir.id)}>
       {(provided) => (
         <div
           {...provided.draggableProps}
@@ -24,7 +24,7 @@ const Directory = ({ dir, index }) => {
           onMouseOut={() => setHover(false)}
           className="dir-item"
         >
-          {dir.title}
+          {dir.name}
           <div className={hover ? "block" : "hidden"}>
             <DirDropdown />
           </div>

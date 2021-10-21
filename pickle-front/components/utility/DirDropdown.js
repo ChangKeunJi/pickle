@@ -11,7 +11,7 @@ const DirDropdown = () => {
       <Menu as="div" className="ml-3 relative">
         <div>
           <Menu.Button className="hover:ring-2 hover:ring-light-nav-hover hover:bg-light-nav w-8 h-8 text-light-main flex-center text-sm rounded-full ">
-            <DotsHorizontalIcon className="w-5 h-5 text-light-font" />
+            <DotsHorizontalIcon className="w-5 h-5 text-light-font focus:outline-none" />
           </Menu.Button>
         </div>
         <Transition

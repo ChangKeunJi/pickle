@@ -2,12 +2,23 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-const { User } = require("../models");
+const { isLoggedIn, isNotLoggedIn } = require("./middleware");
+const { User, Directory } = require("../models");
 
 // ===== 유저 정보를 불러온다. =====
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   if (req.user) {
-    res.send(req.user.dataValues);
+    const user = await User.findOne({
+      where: { id: req.user.dataValues.id },
+      include: [
+        {
+          model: Directory,
+          attributes: ["id"],
+        },
+      ],
+    });
+
+    res.send(user);
   } else {
     res.send("null");
   }
