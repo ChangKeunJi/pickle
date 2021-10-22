@@ -8,18 +8,18 @@ import {
 import Directory from "../component/Directory";
 import DirModal from "../utility/DirModal";
 import { useDispatch, useSelector } from "react-redux";
+import { UPDATE_ORDER_REQUEST } from "../../reducers/directory";
 
 const DirectoryBar = () => {
   const dispatch = useDispatch();
   const { allDirs } = useSelector((state) => state.directory);
-  const { order } = useSelector((state) => state.user.me);
   const [state, setState] = useState(allDirs);
 
   useEffect(() => {
-    console.log(allDirs);
     setState(allDirs);
   }, [allDirs]);
 
+  // 카테고리 이동이 완료될 때 호출되는 함수
   const onDragEnd = useCallback(
     (result) => {
       const { destination, source } = result;
@@ -37,11 +37,25 @@ const DirectoryBar = () => {
         return;
       }
 
-      // 기존 순서 객체를 복사한 뒤 새로운 순서 객체를 만들어준다.
+      // 기존 순서 객체를 복사한 뒤 새로운 순서 객체를 만들어준 뒤 로컬 상태를 업데이트 해준다
       const newAllDirs = Array.from(state);
-      const [removed] = newAllDirs.splice(source.index, 1);
-      newAllDirs.splice(destination.index, 0, removed);
-      console.log(newAllDirs);
+      const exOrder = Array.from(state);
+      const [before] = newAllDirs.splice(source.index, 1);
+      newAllDirs.splice(destination.index, 0, before);
+
+      // 바뀐 순서를 API 요청을 통해 DB 에 저장한다
+      //! : 과연 이것이 최선인가? 너무 많은 api 호출을 하게되는 것은 아닌가?
+      console.log(exOrder, "BEFORE");
+      console.log(newAllDirs, "AFTER");
+      for (let i = 0; i < exOrder.length; i++) {
+        if (exOrder[i].order !== newAllDirs[i].order) {
+          dispatch({
+            type: UPDATE_ORDER_REQUEST,
+            data: { id: newAllDirs[i].id, order: exOrder[i].order },
+          });
+        }
+      }
+
       setState(newAllDirs);
     },
     [state],
@@ -51,7 +65,7 @@ const DirectoryBar = () => {
 
   return (
     <div>
-      <div className="h-screen bg-light-nav py-8 directory-flex">
+      <div className="h-screen py-8 directory-flex">
         <div className="dir-item">
           <p>모두보기</p>
         </div>

@@ -8,9 +8,6 @@ import {
   LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
-  UPDATE_DIR_ORDER_FAILURE,
-  UPDATE_DIR_ORDER_REQUEST,
-  UPDATE_DIR_ORDER_SUCCESS,
 } from "../reducers/user";
 import Router from "next/router";
 
@@ -31,7 +28,7 @@ function* logIn() {
   } catch (err) {
     yield put({
       type: LOAD_MY_INFO_FAILURE,
-      error: err.response.data,
+      error: err.message,
     });
   }
 }

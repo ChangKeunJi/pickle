@@ -7,7 +7,7 @@ export const initialState = {
   logOutLoading: false,
   logOutDone: false,
   logOutError: null,
-  me: null,
+  me: {},
 };
 
 // == < VARIABLES > ==

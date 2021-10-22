@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 import DirModal from "./DirModal";
 
-const DirDropdown = () => {
+const DirDropdown = ({ id }) => {
   return (
     <div>
       <Menu as="div" className="ml-3 relative">
@@ -25,7 +25,7 @@ const DirDropdown = () => {
         >
           <Menu.Items className="origin-top-right= absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
-              <DirModal title={"수정"} />
+              <DirModal title={"수정"} id={id} />
             </Menu.Item>
             <Menu.Item>
               <a

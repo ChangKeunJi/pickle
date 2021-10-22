@@ -4,23 +4,26 @@ module.exports = (sequelize, DataTypes) => {
     "Post",
     {
       url: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       thumbnail: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       title: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(100),
       },
-      content: {
-        type: DataTypes.STRING(50),
-      },
-      favicon: {
+      desc: {
         type: DataTypes.STRING(200),
       },
+      favicon: {
+        type: DataTypes.TEXT,
+      },
       author: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(100),
+      },
+      favorite: {
+        type: DataTypes.BOOLEAN,
       },
     },
     {

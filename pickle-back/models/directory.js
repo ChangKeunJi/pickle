@@ -7,15 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING("30"),
         allowNull: false,
       },
-      _id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
       order: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+        allowNull: false,
       },
     },
     {
@@ -29,3 +23,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Directory;
 };
+
+// https://blog.daum.net/question0921/539
+// id: {
+//     type: DataTypes.UUID,
+//         defaultValue: DataTypes.UUIDV4,
+//         primaryKey: true,
+//
+// },

@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const hpp = require("hpp");
 const helmet = require("helmet");
 
-const urlRouter = require("./routes/url");
+const postRouter = require("./routes/post");
 const loginRouter = require("./routes/login");
 const directoryRouter = require("./routes/directory");
 const db = require("./models");
@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
   res.send("Hello API");
 });
 
-app.use("/url", urlRouter);
+app.use("/post", postRouter);
 app.use("/login", loginRouter);
 app.use("/directory", directoryRouter);
 

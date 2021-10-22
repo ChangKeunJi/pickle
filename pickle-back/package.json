@@ -30,7 +30,8 @@
     "passport-naver-v2": "^2.0.8",
     "pm2": "^5.1.2",
     "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "url-metadata": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

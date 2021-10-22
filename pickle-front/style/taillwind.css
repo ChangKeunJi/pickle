@@ -10,10 +10,6 @@
 
 @layer utilities {
 
-    * {
-        box-sizing: border-box;
-    }
-
     .flex-center {
         display:flex;
         justify-content: center;
@@ -50,6 +46,10 @@
         align-items: flex-start;
     }
 
+    .directory-flex > *:active {
+        @apply bg-light-nav-hover-dark
+    }
+
     .dir-item {
         height: 50px;
         width:100%;
@@ -61,35 +61,23 @@
         cursor:pointer;
     }
 
-    .dir-item:hover {
-        background:#DAD9D4;
-    }
-
-    .dir-item::before {
+    .dir-item-before::before {
         position:absolute;
         content:">";
         margin-right: 10px;
         left:1rem;
     }
 
+    .dir-item:hover {
+        @apply bg-light-nav
+    }
 
+    .card {
+        height: 23rem;
+    }
 
+    .card-image {
+        height: 10rem;
+    }
 
-    /*.directory-flex > * {*/
-    /*    height: 40px;*/
-    /*    width:100%;*/
-    /*    display: flex;*/
-    /*    padding-left: 2rem;*/
-    /*    justify-content: flex-start;*/
-    /*    align-items: center;*/
-    /*    cursor:pointer;*/
-    /*}*/
-
-    /*.directory-flex > *:hover {*/
-    /*    background:#DAD9D4;*/
-    /*}*/
 }
-    /*.directory-flex > *::before {*/
-    /*    content:">";*/
-    /*    margin-right: 10px;*/
-    /*}*/
