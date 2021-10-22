@@ -5,14 +5,6 @@ const urlMetadata = require("url-metadata");
 const { Post, Directory } = require("../models");
 const { isLoggedIn } = require("./middleware");
 
-const summarizeStr = (str, num) => {
-  if (str.length <= num) {
-    return str;
-  } else {
-    return str.slice(0, num);
-  }
-};
-
 // ===== 포스트 불러오기
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
@@ -40,9 +32,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         url: data.url || data["og:url"],
         thumbnail: data.image || data["og:image"],
         title: data.title || data["og:title"],
-        desc:
-          summarizeStr(data.description, 150) ||
-          summarizeStr(data["og:description"], 150),
+        desc: data.description || data["og:description"],
         favicon:
           data["msapplication-TileImage"] || data.image || data["og:image"],
         author: data.author || data["og:site_name"] || data.source,

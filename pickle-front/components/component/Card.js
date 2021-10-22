@@ -36,7 +36,7 @@ const Card = ({ post }) => {
         <div className="flex flex-col gap-2 w-full">
           <img
             src={post.thumbnail || "/img/noimage.svg"}
-            className="card-image w-full rounded-2xl object-cover"
+            className="card-image w-full rounded-2xl border border-light-nav shadow-sm object-cover"
           />
           <div className="font-semibold w-full">
             {summarizeStr(post.title, 30)}

@@ -14,7 +14,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         include: ["id"], //
       },
       order: [
-        ["order", "DESC"],
+        ["order", "ASC"],
         // 카테고리 order 내림차순으로 정렬
       ],
     });
@@ -52,7 +52,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
 
     const newDir = await Directory.create({
       name: req.body.name,
-      UserId: req.user.dataValues.id,
+      // UserId: req.user.dataValues.id,
       order: order,
     });
 
@@ -77,7 +77,7 @@ router.patch("/order", isLoggedIn, async (req, res, next) => {
 
     const dirs = await Directory.findAll({
       where: { UserId: req.user.dataValues.id },
-      order: [["order", "DESC"]],
+      order: [["order", "ASC"]],
     });
 
     res.send(dirs);
@@ -90,7 +90,7 @@ router.patch("/order", isLoggedIn, async (req, res, next) => {
 // 카테고리 이름 변경
 router.patch("/", isLoggedIn, async (req, res, next) => {
   try {
-    const updatedId = await Directory.update(
+    await Directory.update(
       {
         name: req.body.name,
       },

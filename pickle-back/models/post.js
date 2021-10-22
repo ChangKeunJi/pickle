@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
       },
       desc: {
-        type: DataTypes.STRING(200),
+        type: DataTypes.TEXT,
       },
       favicon: {
         type: DataTypes.TEXT,
@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       favorite: {
         type: DataTypes.BOOLEAN,
+        default: 0,
       },
     },
     {
@@ -33,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Post.associate = (db) => {
     db.Post.belongsTo(db.User);
-    db.Post.belongsToMany(db.Directory, { through: "DirPost" });
+    db.Post.belongsTo(db.Directory);
   };
   return Post;
 };

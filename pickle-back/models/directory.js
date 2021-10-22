@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Directory.associate = (db) => {
     db.Directory.belongsTo(db.User);
-    db.Directory.belongsToMany(db.Post, { through: "DirPost" });
+    db.Directory.hasMany(db.Post);
   };
   return Directory;
 };

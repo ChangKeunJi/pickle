@@ -12,6 +12,8 @@ const sequelize = new Sequelize(
 );
 
 // sequelize.sync({ force: true });
+// 에러가 날 때 mysql 터미널에 접근한뒤, 직접 foreign key가 있는 테이블을 강제로 삭제해줘야 한다.
+// https://stackoverflow.com/questions/11100911/cant-drop-table-a-foreign-key-constraint-fails
 
 const user = require("./user")(sequelize, Sequelize);
 const post = require("./post")(sequelize, Sequelize);

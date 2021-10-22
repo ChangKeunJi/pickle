@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
       case ADD_DIR_SUCCESS:
         draft.addDirLoading = false;
         draft.addDirDone = true;
-        draft.allDirs.unshift(action.data);
+        draft.allDirs.push(action.data);
         break;
       case ADD_DIR_FAILURE:
         draft.addDirLoading = false;
