@@ -1,8 +1,14 @@
 import { useCallback, useState } from "react";
-import { TrashIcon } from "@heroicons/react/outline";
+import { TrashIcon, LinkIcon, StarIcon } from "@heroicons/react/outline";
+import { StarIcon as SolidStar } from "@heroicons/react/solid";
+import copy from "copy-to-clipboard";
+
 import { summarizeStr } from "../../hooks/helper";
 import { useDispatch } from "react-redux";
-import { DELETE_POST_REQUEST } from "../../reducers/post";
+import {
+  ADD_REMOVE_FAV_POST_REQUEST,
+  DELETE_POST_REQUEST,
+} from "../../reducers/post";
 
 const Card = ({ post }) => {
   const dispatch = useDispatch();
@@ -15,7 +21,6 @@ const Card = ({ post }) => {
 
   const onClickRemove = useCallback(
     (e) => {
-      e.preventDefault();
       e.stopPropagation();
       dispatch({
         type: DELETE_POST_REQUEST,
@@ -23,6 +28,22 @@ const Card = ({ post }) => {
       });
     },
     [post],
+  );
+
+  const onClickCopyUrl = useCallback((e) => {
+    e.stopPropagation();
+    copy(post.url);
+  }, []);
+
+  const onClickAddFav = useCallback(
+    (e) => {
+      e.stopPropagation();
+      dispatch({
+        type: ADD_REMOVE_FAV_POST_REQUEST,
+        data: { id: post.id, bool: post.favorite },
+      });
+    },
+    [post.favorite],
   );
 
   return (
@@ -39,24 +60,44 @@ const Card = ({ post }) => {
             className="card-image w-full rounded-2xl border border-light-nav shadow-sm object-cover"
           />
           <div className="font-semibold w-full">
-            {summarizeStr(post.title, 30)}
+            {summarizeStr(post.title, 50)}
           </div>
           <div className="text-sm text-dark-nav-hover w-full">
-            {summarizeStr(post.desc, 100)}
+            {summarizeStr(post.desc, 70)}
           </div>
         </div>
         <div className="flex justify-between w-full">
-          <div className="flex items-center gap-4 w-10/12 h-8">
-            <div className="w-5 h-5">
+          <div className="flex items-center gap-4 w-7/12 h-10">
+            <div className="w-5 h-5 flex-center">
               <img src={post.favicon} />
             </div>
-            <div className="text-xs">{summarizeStr(post.author, 20)}</div>
+            <div className="text-xs">{summarizeStr(post.author, 12)}</div>
           </div>
           <div
-            className={hover ? "w-2/12 block flex-center z-20" : "hidden"}
-            onClick={onClickRemove}
+            className={hover ? "w-5/12 block flex-center gap-2 z-20" : "hidden"}
           >
-            <TrashIcon className="w-7 h-7" />
+            <div
+              onClick={onClickAddFav}
+              className="w-10 h-10 rounded-full hover:bg-light-nav-hover flex-center active:-translate-y-0.5"
+            >
+              {post.favorite ? (
+                <SolidStar className="w-6 h-6" />
+              ) : (
+                <StarIcon className="w-6 h-6" />
+              )}
+            </div>
+            <div
+              onClick={onClickCopyUrl}
+              className="w-10 h-10 rounded-full hover:bg-light-nav-hover flex-center active:-translate-y-0.5"
+            >
+              <LinkIcon className="w-6 h-6" />
+            </div>
+            <div
+              onClick={onClickRemove}
+              className="w-10 h-10 rounded-full hover:bg-light-nav-hover flex-center active:-translate-y-0.5"
+            >
+              <TrashIcon className="w-6 h-6" />
+            </div>
           </div>
         </div>
       </div>

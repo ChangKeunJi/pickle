@@ -20,6 +20,7 @@ module.exports = {
       "user-profile": "#f5691e",
       white: "#FFFFFF",
       black: "#000000",
+      red: "#da1515",
     },
     screens: {
       sm: "600px",

@@ -15,7 +15,7 @@ const AccDropdown = () => {
     <div className="mr-4">
       <Menu as="div" className="ml-3 relative">
         <div>
-          <Menu.Button className="hover:text-light-font w-8 h-8 text-light-main bg-user-profile rounded-full bg-gray-800 flex-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          <Menu.Button className="w-8 h-8 text-light-main bg-user-profile rounded-full bg-gray-800 flex-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <span className="sr-only">Open user menu</span>
             {/* ========= User Name ========= */}
             <div className="w-full text-xl">C</div>

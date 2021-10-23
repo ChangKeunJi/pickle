@@ -47,7 +47,7 @@ const DirModal = ({ update, id, name }) => {
   );
 
   return (
-    <div className="hover:bg-light-nav rounded-full cursor-pointer hover:bg-light-nav-hover">
+    <div className="hover:bg-light-nav rounded-full cursor-pointer">
       {update ? (
         <PencilAltIcon className="w-5 h-5" onClick={onClickOpenModal} />
       ) : (
@@ -94,7 +94,7 @@ const DirModal = ({ update, id, name }) => {
                 <form
                   onSubmit={onSubmit}
                   className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                  autocomplete="off"
+                  autoComplete="off"
                 >
                   <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">

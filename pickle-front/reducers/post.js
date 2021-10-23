@@ -1,15 +1,14 @@
 import produce from "immer";
-import {
-  DELETE_DIR_FAILURE,
-  DELETE_DIR_REQUEST,
-  DELETE_DIR_SUCCESS,
-} from "./directory";
+import { updateArr } from "../hooks/helper";
 
 const initialState = {
   allPosts: [],
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
+  addRemoveFavPostLoading: false,
+  addRemoveFavPostDone: false,
+  addRemoveFavPostError: null,
   loadPostLoading: false,
   loadPostDone: false,
   loadPostError: null,
@@ -21,6 +20,10 @@ const initialState = {
 export const ADD_POST_REQUEST = "ADD_POST_REQUEST";
 export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
 export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
+
+export const ADD_REMOVE_FAV_POST_REQUEST = "ADD_REMOVE_FAV_POST_REQUEST";
+export const ADD_REMOVE_FAV_POST_SUCCESS = "ADD_REMOVE_FAV_POST_SUCCESS";
+export const ADD_REMOVE_FAV_POST_FAILURE = "ADD_REMOVE_FAV_POST_FAILURE";
 
 export const LOAD_POST_REQUEST = "LOAD_POST_REQUEST";
 export const LOAD_POST_SUCCESS = "LOAD_POST_SUCCESS";
@@ -60,7 +63,20 @@ const reducer = (state = initialState, action) => {
       case ADD_POST_FAILURE:
         draft.addPostLoading = false;
         draft.addPostError = action.error;
-      default:
+        break;
+      case ADD_REMOVE_FAV_POST_REQUEST:
+        draft.addRemoveFavPostLoading = true;
+        draft.addRemoveFavPostDone = false;
+        draft.addRemoveFavPostError = null;
+        break;
+      case ADD_REMOVE_FAV_POST_SUCCESS:
+        draft.addRemoveFavPostLoading = false;
+        draft.addRemoveFavPostDone = true;
+        draft.allPosts = updateArr(draft.allPosts, action.data);
+        break;
+      case ADD_REMOVE_FAV_POST_FAILURE:
+        draft.addRemoveFavPostLoading = false;
+        draft.addRemoveFavPostError = action.error;
         break;
       case DELETE_POST_REQUEST:
         draft.deletePostLoading = true;
@@ -75,6 +91,8 @@ const reducer = (state = initialState, action) => {
       case DELETE_POST_FAILURE:
         draft.deletePostLoading = false;
         draft.deletePostError = action.error;
+      default:
+        break;
     }
   });
 };

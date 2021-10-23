@@ -1,9 +1,19 @@
-import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import {
+  all,
+  call,
+  fork,
+  put,
+  takeEvery,
+  takeLatest,
+} from "redux-saga/effects";
 import axios from "axios";
 import {
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
+  ADD_REMOVE_FAV_POST_FAILURE,
+  ADD_REMOVE_FAV_POST_REQUEST,
+  ADD_REMOVE_FAV_POST_SUCCESS,
   LOAD_POST_FAILURE,
   LOAD_POST_REQUEST,
   LOAD_POST_SUCCESS,
@@ -11,11 +21,6 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
 } from "../reducers/post";
-import {
-  DELETE_DIR_FAILURE,
-  DELETE_DIR_REQUEST,
-  DELETE_DIR_SUCCESS,
-} from "../reducers/directory";
 
 // 포스트 추가하기
 
@@ -87,7 +92,7 @@ function* deletePost(action) {
   } catch (err) {
     yield put({
       type: DELETE_POST_FAILURE,
-      error: err.response.data,
+      error: err.message,
     });
   }
 }
@@ -96,12 +101,37 @@ function* watchDeletePost() {
   yield takeLatest(DELETE_POST_REQUEST, deletePost);
 }
 
+// 포스트 즐겨찾기 추가
+
+async function addRemoveFavPostAPI(data) {
+  return axios.patch("/post/fav", data);
+}
+
+function* addRemoveFavPost(action) {
+  try {
+    const result = yield call(addRemoveFavPostAPI, action.data);
+
+    yield put({
+      type: ADD_REMOVE_FAV_POST_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: ADD_REMOVE_FAV_POST_FAILURE,
+      error: err.message,
+    });
+  }
+}
+
+function* watchAddRemoveFavPost() {
+  yield takeLatest(ADD_REMOVE_FAV_POST_REQUEST, addRemoveFavPost);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchAddPost),
     fork(watchLoadPost),
-    // fork(watchUpdateOrder),
-    // fork(watchUpdateDir),
+    fork(watchAddRemoveFavPost),
     fork(watchDeletePost),
   ]);
 }

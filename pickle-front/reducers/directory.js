@@ -1,4 +1,5 @@
 import produce from "immer";
+import { updateArr } from "../hooks/helper";
 
 const initialState = {
   allDirs: [],
@@ -39,13 +40,13 @@ export const DELETE_DIR_REQUEST = "DELETE_DIR_REQUEST";
 export const DELETE_DIR_SUCCESS = "DELETE_DIR_SUCCESS";
 export const DELETE_DIR_FAILURE = "DELETE_DIR_FAILURE";
 
-const updateAllDir = (allDirs, dir) => {
-  let arr = Array.from(allDirs);
-  const updatedDir = arr.find((el) => el.id === dir.id);
-  const index = arr.findIndex((el) => el === updatedDir);
-  arr.splice(index, 1, dir);
-  return arr;
-};
+// const updateAllDir = (allDirs, dir) => {
+//   let arr = Array.from(allDirs);
+//   const updatedDir = arr.find((el) => el.id === dir.id);
+//   const index = arr.findIndex((el) => el === updatedDir);
+//   arr.splice(index, 1, dir);
+//   return arr;
+// };
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -98,7 +99,7 @@ const reducer = (state = initialState, action) => {
       case UPDATE_DIR_SUCCESS:
         draft.updateDirLoading = false;
         draft.updateDirDone = true;
-        draft.allDirs = updateAllDir(draft.allDirs, action.data);
+        draft.allDirs = updateArr(draft.allDirs, action.data);
         break;
       case UPDATE_DIR_FAILURE:
         draft.updateDirLoading = false;
