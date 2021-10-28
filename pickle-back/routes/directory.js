@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { Directory } = require("../models");
+const { Directory, Post } = require("../models");
 const { isLoggedIn } = require("./middleware");
 
 // 모든 카테고리 불러오기
@@ -10,20 +10,13 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     const id = req.user.dataValues.id;
     const dirs = await Directory.findAll({
       where: { UserId: id },
-      attributes: {
-        include: ["id"], //
-      },
       order: [
         ["order", "ASC"],
         // 카테고리 order 내림차순으로 정렬
       ],
     });
 
-    if (!dirs) {
-      res.end();
-    } else {
-      res.send(dirs);
-    }
+    res.send(dirs);
   } catch (err) {
     console.error(err);
     next(err);
@@ -37,22 +30,19 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       where: { UserId: req.user.dataValues.id },
     });
 
-    let order;
+    let order = 0;
     if (allDir.length === 0) {
       order = 1;
     } else {
-      let max = 0;
-      for (let el of allDir) {
-        if (el.order > max) {
-          max = el.order;
-        }
-      }
-      order = max + 1;
+      const maxOrder = allDir.reduce((prev, current) => {
+        return prev.order > current.order ? prev : current;
+      });
+      order = maxOrder.order + 1;
     }
 
     const newDir = await Directory.create({
       name: req.body.name,
-      // UserId: req.user.dataValues.id,
+      UserId: req.user.dataValues.id,
       order: order,
     });
 
@@ -124,6 +114,21 @@ router.delete("/:dirId", isLoggedIn, async (req, res, next) => {
   }
 });
 
-module.exports = router;
+// 특정 디렉토리 포스트 불러오기
 
-// https://wooooooak.github.io/web/2018/11/10/req.params-vs-req.query/
+router.get("/:dirId", isLoggedIn, async (req, res, next) => {
+  try {
+    const dirId = req.params.dirId;
+
+    const dirPosts = await Post.findAll({
+      where: { DirectoryId: dirId, UserId: req.user.dataValues.id },
+    });
+
+    res.send(dirPosts);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
+module.exports = router;

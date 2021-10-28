@@ -25,6 +25,11 @@ import {
   DELETE_DIR_REQUEST,
   DELETE_DIR_SUCCESS,
 } from "../reducers/directory";
+import {
+  LOAD_DIR_POST_FAILURE,
+  LOAD_DIR_POST_REQUEST,
+  LOAD_DIR_POST_SUCCESS,
+} from "../reducers/post";
 
 // ===== 사용자 카테고리 불러오기
 
@@ -156,6 +161,32 @@ function* watchDeleteDir() {
   yield takeLatest(DELETE_DIR_REQUEST, deleteDir);
 }
 
+// 특정 디렉토리 포스트 불러오기
+
+async function loadDirPostAPI(data) {
+  return axios.get(`/directory/${data}`);
+}
+
+function* loadDirPost(action) {
+  try {
+    const result = yield call(loadDirPostAPI, action.data);
+
+    yield put({
+      type: LOAD_DIR_POST_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_DIR_POST_FAILURE,
+      error: err.message,
+    });
+  }
+}
+
+function* watchLoadDirPost() {
+  yield takeLatest(LOAD_DIR_POST_REQUEST, loadDirPost);
+}
+
 export default function* directorySaga() {
   yield all([
     fork(watchLoadDir),
@@ -163,5 +194,6 @@ export default function* directorySaga() {
     fork(watchUpdateOrder),
     fork(watchUpdateDir),
     fork(watchDeleteDir),
+    fork(watchLoadDirPost),
   ]);
 }

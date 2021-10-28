@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       title: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.TEXT,
       },
       desc: {
         type: DataTypes.TEXT,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       author: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.TEXT,
       },
       favorite: {
         type: DataTypes.BOOLEAN,

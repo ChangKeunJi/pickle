@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*@layer base {*/
-/*    .directory-flex > div {*/
-/*        */
-/*    }*/
-/*}*/
-
 @layer utilities {
 
     .flex-center {
@@ -40,36 +34,19 @@
 
     }
 
-    .directory-flex {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .directory-flex > *:active {
-        @apply bg-light-nav-hover-dark
-    }
-
     .dir-item {
         height: 50px;
         width:100%;
         display: flex;
-        padding-left: 2.5rem;
-        padding-right: 1rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
         justify-content: space-between;
         align-items: center;
         cursor:pointer;
     }
 
-    .dir-item-before::before {
-        position:absolute;
-        content:">";
-        margin-right: 10px;
-        left:1rem;
-    }
-
     .dir-item:hover {
-        @apply bg-light-nav
+        @apply bg-gray
     }
 
     .card {
@@ -80,4 +57,20 @@
         height: 10rem;
     }
 
+    .darken-img {
+        filter: brightness(50%);
+    }
+
+    input:checked ~ .dot {
+        transform: translateX(100%);
+        @apply bg-green;
+    }
+
+    .post-icon {
+        @apply w-10 h-full rounded-full hover:bg-gray-dark flex-center active:-translate-y-0.5
+    }
+
+    .post-icon-size {
+        @apply w-6 h-6;
+    }
 }

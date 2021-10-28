@@ -1,13 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import Router from "next/router";
+import { useSelector } from "react-redux";
 
-import DirDropdown from "../utility/DirDropdown";
-import DirUpdateDelete from "../utility/DirUpdateDelete";
+import UpdateAndDeleteDir from "../utility/Modal/UpdateAndDeleteDir";
 
-const Directory = ({ dir, index }) => {
+const Directory = ({ dir, index, setOpenMenu }) => {
+  const ref = useRef(null);
+  const { allPosts } = useSelector((state) => state.post);
+
   // 설정 아이콘은 Directory 컴포넌트가 호버 될 때만 보여준다.
   const [hover, setHover] = useState(false);
-  const [activeEffect, setActiveEffect] = useState(false);
 
   // 이름이 일정 길이 이상 넘어가면 "..." 처리
   let name = dir.name;
@@ -16,9 +19,33 @@ const Directory = ({ dir, index }) => {
     name += "...";
   }
 
-  const onClickDir = useCallback(() => {
-    setActiveEffect(true);
-  }, [activeEffect, hover]);
+  // 카테고리를 클릭하면 카테고리에 포함된 게시물만 보여준다.
+  const onClickDir = useCallback((e) => {
+    if (!ref.current.contains(e.target)) {
+      setOpenMenu(false);
+      Router.push(`/directory/${dir.id}`);
+    }
+  }, []);
+
+  // 사이드바의 바깥을 클릭하면 사이드바를 닫아준다.(작은 화면)
+  const handleClickOutside = useCallback((e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setHover(false);
+    }
+  }, []);
+
+  // 카테고리 이름 옆 게시글의 갯수를 나타내준다.
+  const renderNumber = useCallback(() => {
+    const arr = allPosts.filter((el) => el.DirectoryId === dir.id);
+    return arr.length;
+  }, [allPosts]);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [hover]);
 
   return (
     <Draggable key={dir.id} index={index} draggableId={String(dir.id)}>
@@ -30,11 +57,18 @@ const Directory = ({ dir, index }) => {
           onMouseOver={() => setHover(true)}
           onMouseOut={() => setHover(false)}
           onClick={onClickDir}
-          className="dir-item-before dir-item"
+          className="dir-item border-b border-gray-dark dark:hover:bg-dark-black-light dark:border-dark-black-light"
         >
-          {name}
-          <div className={hover ? "block" : "hidden"}>
-            <DirUpdateDelete id={dir.id} name={dir.name} />
+          <div className="flex">
+            <span> > </span>
+            <p className="ml-2">{name}</p>
+          </div>
+
+          <div ref={ref} className={hover ? "block" : "hidden"}>
+            <UpdateAndDeleteDir id={dir.id} name={dir.name} />
+          </div>
+          <div className={hover ? "hidden" : "block"}>
+            <p className="mr-2 text-sm text-orange">{renderNumber()}</p>
           </div>
         </div>
       )}
@@ -43,5 +77,3 @@ const Directory = ({ dir, index }) => {
 };
 
 export default Directory;
-
-// https://okky.kr/article/703668

@@ -1,54 +1,52 @@
-/*
-폰트 + 폴리필 요청
-styled-components 적용
-*/
-
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    // styled component 적용 시키기
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-
   render() {
     return (
       <Html>
         <Head>
-          <meta charSet="utf-8" />
+          <meta charSet="UTF-8" />
+          <meta
+            name="description"
+            content="세상에서 가장 심플한 북마크 관리 서비스"
+          />
+          <meta name="author" content="Pickle" />
           <link
             href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
             rel="stylesheet"
             type="text/css"
           />
-          <link rel="shortcut icon" href="/favicon.svg" />
+          <link rel="shortcut icon" href="/favicon.png" />
+          <link rel="icon" href="/favicon.png" />
+          <link rel="apple-touch-icon" href="/favicon.ico" />
+          <meta
+            property="og:title"
+            content="Pickle | 심플하게 북마크 관리하세요"
+          />
+          <meta
+            property="og:description"
+            content="세상에서 가장 심플한 북마크 관리 서비스"
+          />
+          <meta property="og:site_name" content="Pickle" />
+          {/*<meta property="og:image" content="" />*/}
+          {/*<meta property="og:url" content="https://www.pickle-pickle.com" />*/}
+          <meta
+            name="twitter:title"
+            content="Pickle | 심플하게 북마크 관리하세요"
+          />
+          <meta
+            property="twitter:description"
+            content="세상에서 가장 심플한 북마크 관리 서비스"
+          />
+          {/*<meta*/}
+          {/*  name="twitter:image"*/}
+          {/*  content=""*/}
+          {/*/>*/}
+          {/*<meta name="twitter:url" content="https://www.pickle-pickle.com" />*/}
         </Head>
         <body>
-          <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019" />
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated" />
           <Main />
           <NextScript />
         </body>

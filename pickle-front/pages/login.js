@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Router from "next/router";
 import Image from "next/image";
 
-import Logo from "../public/img/Logo.png";
+import Logo from "../public/favicon.png";
 import Google from "../public/img/google2.png";
 import Kakao from "../public/img/kakao2.png";
 import login_background from "../public/img/login_background.svg";
@@ -15,6 +15,7 @@ import { END } from "redux-saga";
 const Login = () => {
   const { me } = useSelector((state) => state.user);
 
+  // 로그인이 되어있다면 홈 화면으로 이동
   useEffect(() => {
     if (me && me.id) {
       Router.replace("/");
@@ -30,11 +31,11 @@ const Login = () => {
   }, []);
 
   return (
-    <section className="container mt-12 text-light-font">
-      <div className="grid gap-24 grid-col-1 text-center">
-        <div className="flex-center">
+    <section className="container mt-12">
+      <div className="grid gap-16 grid-col-1 text-center">
+        <div className="flex-center flex-col">
           <Image src={Logo} width={70} height={70} />
-          <h1 className="text-3xl">Pickle</h1>
+          <h1 className="text-3xl mt-4 italic">피클</h1>
         </div>
         <div>
           <p className="sm:text-4xl text-xl">
@@ -44,7 +45,7 @@ const Login = () => {
         <div className="h-48 flex items-center justify-around flex-col  h-64">
           <button
             onClick={onClickGoogle}
-            className="button-width button-height border border-light-nav-hover border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
+            className="button-width button-height border border-gray-dark border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
           >
             <div className="inline mr-3 flex-center">
               <Image src={Google} width={20} height={20} />
