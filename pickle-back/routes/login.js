@@ -26,7 +26,7 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    console.log("######################");
+    console.log(res.session);
     res.redirect(frontUrl);
   }
 );
