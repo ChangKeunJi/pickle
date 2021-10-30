@@ -23,7 +23,8 @@ router.get("/", async (req, res) => {
 router.get("/kakao", passport.authenticate("kakao"));
 
 router.get(
-  "/kakao/callback",
+  // "/kakao/callback",
+  "http://3.38.99.75/login/kakao/callback",
   passport.authenticate("kakao", {
     failureRedirect: "/login",
   }),
