@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CogIcon, InformationCircleIcon } from "@heroicons/react/outline";
+
 import { LOG_OUT_REQUEST } from "../../../reducers/user";
 import { useClose } from "../../../hooks/useClose";
 import DarkmodeToggle from "../Toggle/DarkmodeToggle";

@@ -1,7 +1,5 @@
 import axios from "axios";
 import { END } from "redux-saga";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
 
 import wrapper from "../../store/configureStore";
 import { LOAD_DIR_REQUEST } from "../../reducers/directory";

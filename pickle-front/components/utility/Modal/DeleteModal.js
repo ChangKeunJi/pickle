@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
+import PropTypes from "prop-types";
 
 const DeleteModal = ({ type, setModal, setConfirm }) => {
   const [open, setOpen] = useState(true);
@@ -107,3 +108,9 @@ const DeleteModal = ({ type, setModal, setConfirm }) => {
 };
 
 export default DeleteModal;
+
+DeleteModal.propTypes = {
+  type: PropTypes.string,
+  setModal: PropTypes.func,
+  setConfirm: PropTypes.func,
+};

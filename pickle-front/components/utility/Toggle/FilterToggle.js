@@ -1,4 +1,6 @@
 import { useCallback, useState } from "react";
+import PropTypes from "prop-types";
+
 import Toggle from "./Toggle";
 
 const FilterToggle = ({ setSort, initialSort }) => {
@@ -27,3 +29,8 @@ const FilterToggle = ({ setSort, initialSort }) => {
 };
 
 export default FilterToggle;
+
+FilterToggle.propTypes = {
+  setSort: PropTypes.func,
+  initialSort: PropTypes.bool,
+};

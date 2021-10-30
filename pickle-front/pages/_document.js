@@ -43,10 +43,9 @@ export default class MyDocument extends Document {
           {/*  name="twitter:image"*/}
           {/*  content=""*/}
           {/*/>*/}
-          {/*<meta name="twitter:url" content="https://www.pickle-pickle.com" />*/}
+          {/*<meta name="twitter:url" cotent="https://www.pickle-pickle.com" />*/}
         </Head>
         <body>
-          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated" />
           <Main />
           <NextScript />
         </body>

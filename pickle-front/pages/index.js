@@ -1,4 +1,5 @@
 import axios from "axios";
+import PropTypes from "prop-types";
 import { END } from "redux-saga";
 import Router from "next/router";
 import PostSection from "../components/layout/PostSection";
@@ -6,7 +7,7 @@ import Nav from "../components/layout/Nav";
 import DirectoryBar from "../components/layout/DirectoryBar";
 import wrapper from "../store/configureStore";
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { LOAD_DIR_REQUEST } from "../reducers/directory";
 import { LOAD_POST_REQUEST } from "../reducers/post";
@@ -55,6 +56,10 @@ const Home = ({ type }) => {
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  type: PropTypes.string,
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(

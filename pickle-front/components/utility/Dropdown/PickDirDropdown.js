@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import PropTypes from "prop-types";
+
 import { joinClass } from "../../../hooks/helper";
 import { useSelector } from "react-redux";
 
@@ -85,3 +87,7 @@ const PickDirDropdown = ({ setDir }) => {
 };
 
 export default PickDirDropdown;
+
+PickDirDropdown.propTypes = {
+  setDir: PropTypes.func,
+};

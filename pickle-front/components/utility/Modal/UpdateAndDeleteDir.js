@@ -3,6 +3,8 @@ import AddDirModal from "./AddDirModal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+
 import { DELETE_DIR_REQUEST } from "../../../reducers/directory";
 import { DELETE_POST_REQUEST } from "../../../reducers/post";
 import DeleteModal from "./DeleteModal";
@@ -54,3 +56,8 @@ const UpdateAndDeleteDir = ({ id, name }) => {
 };
 
 export default UpdateAndDeleteDir;
+
+UpdateAndDeleteDir.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+};

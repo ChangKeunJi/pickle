@@ -2,6 +2,8 @@ import { PlusSmIcon, PencilAltIcon } from "@heroicons/react/outline";
 import { useCallback, useState, Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
+import PropTypes from "prop-types";
+
 import {
   ADD_DIR_REQUEST,
   UPDATE_DIR_REQUEST,
@@ -150,3 +152,9 @@ const AddDirModal = ({ update, id, name }) => {
 };
 
 export default AddDirModal;
+
+AddDirModal.propTypes = {
+  update: PropTypes.bool,
+  id: PropTypes.number,
+  name: PropTypes.string,
+};

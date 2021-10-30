@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { TrashIcon, LinkIcon, StarIcon } from "@heroicons/react/outline";
 import { StarIcon as SolidStar } from "@heroicons/react/solid";
 import copy from "copy-to-clipboard";
+import PropTypes from "prop-types";
 
 import DeleteModal from "../utility/Modal/DeleteModal";
 import { showAndRemovePopup, summarizeStr } from "../../hooks/helper";
@@ -140,3 +141,8 @@ const Post = ({ post, dirName }) => {
 };
 
 export default Post;
+
+Post.propTypes = {
+  post: PropTypes.object,
+  dirName: PropTypes.string,
+};

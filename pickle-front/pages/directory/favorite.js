@@ -1,6 +1,5 @@
 import axios from "axios";
 import { END } from "redux-saga";
-import { useSelector } from "react-redux";
 
 import Home from "../index";
 import wrapper from "../../store/configureStore";

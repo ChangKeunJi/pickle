@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Toggle = ({ opt1, opt2, onClick, open }) => {
   return (
     <div className="w-36 flex items-center my-2">
@@ -16,3 +18,10 @@ const Toggle = ({ opt1, opt2, onClick, open }) => {
 };
 
 export default Toggle;
+
+Toggle.propTypes = {
+  opt1: PropTypes.string,
+  opt2: PropTypes.string,
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
+};

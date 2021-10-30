@@ -3,6 +3,7 @@ import Image from "next/image";
 import Router from "next/router";
 import { useSelector } from "react-redux";
 import { MenuIcon } from "@heroicons/react/outline";
+import PropTypes from "prop-types";
 
 import NavModal from "../utility/Modal/NavModal";
 import { joinClass } from "../../hooks/helper";
@@ -99,3 +100,7 @@ const Nav = ({ setOpenMenu }) => {
 };
 
 export default Nav;
+
+Nav.propTypes = {
+  setOpenMenu: PropTypes.func,
+};

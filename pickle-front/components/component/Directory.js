@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import PropTypes from "prop-types";
 import Router from "next/router";
 import { useSelector } from "react-redux";
 
@@ -60,7 +61,7 @@ const Directory = ({ dir, index, setOpenMenu }) => {
           className="dir-item border-b border-gray-dark dark:hover:bg-dark-black-light dark:border-dark-black-light"
         >
           <div className="flex">
-            <span> > </span>
+            <span> &gt; </span>
             <p className="ml-2">{name}</p>
           </div>
 
@@ -77,3 +78,9 @@ const Directory = ({ dir, index, setOpenMenu }) => {
 };
 
 export default Directory;
+
+Directory.propTypes = {
+  dir: PropTypes.object,
+  index: PropTypes.number,
+  setOpenMenu: PropTypes.func,
+};

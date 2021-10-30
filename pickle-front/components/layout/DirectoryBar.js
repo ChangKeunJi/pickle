@@ -5,6 +5,7 @@ import {
   resetServerContext,
 } from "react-beautiful-dnd";
 import Router from "next/router";
+import PropTypes from "prop-types";
 
 import { ChevronLeftIcon } from "@heroicons/react/outline";
 import Directory from "../component/Directory";
@@ -128,3 +129,7 @@ const DirectoryBar = ({ setOpenMenu }) => {
 };
 
 export default DirectoryBar;
+
+DirectoryBar.propTypes = {
+  setOpenMenu: PropTypes.func,
+};

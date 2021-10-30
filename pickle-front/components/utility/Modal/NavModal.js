@@ -1,4 +1,7 @@
+import PropTypes from "prop-types";
+
 const NavModal = ({ text, emoji }) => {
+  console.log(typeof emoji);
   return (
     <p className="tracking-wider text-xs sm:text-base">
       {text}
@@ -10,3 +13,8 @@ const NavModal = ({ text, emoji }) => {
   );
 };
 export default NavModal;
+
+NavModal.propTypes = {
+  text: PropTypes.string,
+  emoji: PropTypes.string,
+};

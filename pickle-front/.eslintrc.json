@@ -7,9 +7,9 @@
   "parser": "babel-eslint",
   "extends": [
     "next/core-web-vitals",
-    "eslint:recommended",
+//    "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb",
+//    "airbnb",
     "plugin:prettier/recommended"
   ],
   "settings": {
@@ -27,7 +27,7 @@
   "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
     // import React from 'react' 생략가능하게 해준다.
-    "react/react-in-jsx-scope": 0,
+    "react/react-in-jsx-scope": "off",
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,

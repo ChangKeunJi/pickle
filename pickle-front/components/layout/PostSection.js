@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+
 import FilterToggle from "../utility/Toggle/FilterToggle";
 import Post from "../component/Post";
 import { findDirName } from "../../hooks/helper";
@@ -97,3 +99,7 @@ const PostSection = ({ type }) => {
 };
 
 export default PostSection;
+
+PostSection.propTypes = {
+  type: PropTypes.string,
+};
