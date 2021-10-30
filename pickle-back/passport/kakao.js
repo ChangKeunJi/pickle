@@ -13,6 +13,7 @@ module.exports = () => {
         callbackURL: `/login/kakao/callback`,
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log(profile);
         try {
           const exUser = await User.findOne({
             where: { snsId: profile.id, provider: "kakao" },
