@@ -18,6 +18,8 @@ dotenv.config();
 const app = express();
 passportConfig();
 
+const frontUrl = "http://3.38.99.75";
+
 db.sequelize
   .sync()
   .then(() => {
@@ -35,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://3.38.99.75", "pickle-pickle.kr"],
+    origin: ["http://localhost:3000", frontUrl, "pickle-pickle.kr"],
     credentials: true,
   })
 );
@@ -62,11 +64,12 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    proxy: true,
+    proxy: process.env.NODE_ENV === "production",
     cookie: {
-      maxAge: new Date(Number(new Date()) + 315360000000),
-      secure: false,
-      httpOnly: false,
+      maxAge: 2147483647,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      domain: process.env.NODE_ENV === "production" && frontUrl,
     },
     store: new SequelizeStore({
       db: db.sequelize,
