@@ -42,16 +42,16 @@ app.use(
 
 //! ----------
 // Session 을 DB 에 저장하여 자동로그인 기능 구현
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const env = process.env.NODE_ENV || "development";
-const config = require("./config/config")[env];
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config
-);
+// const env = process.env.NODE_ENV || "development";
+// const config = require("./config/config")[env];
+// const sequelize = new Sequelize(
+//   config.database,
+//   config.username,
+//   config.password,
+//   config
+// );
 //! ----------
 
 app.use(express.json());
@@ -69,7 +69,7 @@ app.use(
       httpOnly: false,
     },
     store: new SequelizeStore({
-      db: sequelize,
+      db: db.sequelize,
     }),
   })
 );
