@@ -1,4 +1,4 @@
 .idea
 .DS_Store
-./pickle-back/config
-./pickle-back/.env
+/pickle-back/config
+/pickle-back/.env
