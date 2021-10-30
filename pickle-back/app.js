@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(
   cors({
-    origin: [true, "http://localhost:3000"],
+    origin: ["http://localhost:3000", "pickle-pickle.kr"],
     credentials: true,
   })
 );
@@ -62,6 +62,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
       maxAge: new Date(Number(new Date()) + 315360000000),
       secure: false,
