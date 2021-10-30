@@ -55,7 +55,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //   config
 // );
 //! ----------
-
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -66,7 +66,7 @@ app.use(
     saveUninitialized: false,
     proxy: process.env.NODE_ENV === "production",
     cookie: {
-      maxAge: 2147483647,
+      maxAge: new Date(Number(new Date()) + 315360000000),
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       domain: process.env.NODE_ENV === "production" && frontUrl,
