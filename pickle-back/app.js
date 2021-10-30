@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "pickle-pickle.kr"],
+    origin: ["http://localhost:3000", "http://3.38.99.75", "pickle-pickle.kr"],
     credentials: true,
   })
 );

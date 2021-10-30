@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const { User } = require("../models");
+const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
@@ -26,7 +27,7 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    res.redirect("http://localhost:3000");
+    res.redirect(frontUrl);
   }
 );
 
@@ -41,7 +42,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("http://localhost:3000");
+    res.redirect(frontUrl);
   }
 );
 
