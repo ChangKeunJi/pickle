@@ -7,8 +7,6 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  console.log(process.env.NODE_ENV);
-  console.log(req.session);
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -23,12 +21,12 @@ router.get("/", async (req, res) => {
 router.get("/kakao", passport.authenticate("kakao"));
 
 router.get(
-  // "/kakao/callback",
-  "http://3.38.99.75/login/kakao/callback",
+  "/kakao/callback",
   passport.authenticate("kakao", {
     failureRedirect: "/login",
   }),
   (req, res) => {
+    console.log("######################");
     res.redirect(frontUrl);
   }
 );
