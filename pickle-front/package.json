@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "ANALYZE=true NODE_ENV=production next build",
-    "start": "next start",
+    "start": "NODE_ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {
