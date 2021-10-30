@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Router from "next/router";
 import Image from "next/image";
 
+import { backUrl } from "../config/config";
 import Logo from "../public/favicon.png";
 import Google from "../public/img/google2.png";
 import Kakao from "../public/img/kakao2.png";
@@ -23,11 +24,11 @@ const Login = () => {
   }, [me]);
 
   const onClickKakao = useCallback(() => {
-    Router.replace(`http://localhost:3065/login/kakao`);
+    Router.replace(`${backUrl}/login/kakao`);
   }, []);
 
   const onClickGoogle = useCallback(() => {
-    Router.replace(`http://localhost:3065/login/google`);
+    Router.replace(`${backUrl}/login/google`);
   }, []);
 
   return (

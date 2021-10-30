@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
           />
           <meta property="og:site_name" content="Pickle" />
           {/*<meta property="og:image" content="" />*/}
-          {/*<meta property="og:url" content="https://www.pickle-pickle.com" />*/}
+          <meta property="og:url" content="https://www.pickle-pickle.kr" />
           <meta
             name="twitter:title"
             content="Pickle | 심플하게 북마크 관리하세요"
@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
           {/*  name="twitter:image"*/}
           {/*  content=""*/}
           {/*/>*/}
-          {/*<meta name="twitter:url" cotent="https://www.pickle-pickle.com" />*/}
+          <meta name="twitter:url" cotent="https://www.pickle-pickle.kr" />
         </Head>
         <body>
           <Main />
