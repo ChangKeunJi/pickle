@@ -1,4 +1,3 @@
-const { DataTypes } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -6,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING(30),
         allowNull: false,
-        // unique: true,
       },
       name: {
         type: DataTypes.STRING(30),
@@ -15,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       snsId: {
         type: DataTypes.STRING(100),
         allowNull: false,
-        unique: true,
       },
       provider: {
         type: DataTypes.STRING(30),

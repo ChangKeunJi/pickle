@@ -2,29 +2,22 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-const { isLoggedIn, isNotLoggedIn } = require("./middleware");
-const { User, Directory } = require("../models");
+const { User } = require("../models");
 
-// ===== 유저 정보를 불러온다. =====
+// 유저 정보 불러오기
 router.get("/", async (req, res) => {
+  console.log(req.session);
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
-      include: [
-        {
-          model: Directory,
-          attributes: ["id"],
-        },
-      ],
     });
-
     res.send(user);
   } else {
     res.send("null");
   }
 });
 
-// ===== 카카오 로그인 =====
+// 카카오 로그인
 router.get("/kakao", passport.authenticate("kakao"));
 
 router.get(
@@ -37,7 +30,7 @@ router.get(
   }
 );
 
-// ===== 구글 로그인 =====
+// 구글 로그인
 
 router.get(
   "/google",
@@ -52,7 +45,7 @@ router.get(
   }
 );
 
-// ===== 로그아웃 =====
+// 로그아웃
 
 router.post("/logout", (req, res) => {
   req.logout();
@@ -62,11 +55,3 @@ router.post("/logout", (req, res) => {
 });
 
 module.exports = router;
-
-// session 으로 data 전달 하면서 동시에 redirect
-// https://burning-camp.tistory.com/22
-// router.get("/success", (req, res) => {
-//   const passedVariable = req.session.valid;
-//   req.session.valid = null;
-//   res.send(passedVariable);
-// });

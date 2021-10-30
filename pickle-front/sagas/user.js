@@ -9,10 +9,8 @@ import {
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
 } from "../reducers/user";
-import Router from "next/router";
 
-//! ===== 유저 정보 불러오기 =====
-
+// 유저 정보 불러오기
 async function logInAPI() {
   return axios.get("/login");
 }
@@ -37,8 +35,7 @@ function* watchLogIn() {
   yield takeLatest(LOAD_MY_INFO_REQUEST, logIn);
 }
 
-//! ===== 로그아웃 =====
-
+// 로그아웃
 async function logOutAPI() {
   return axios.post("/login/logout");
 }

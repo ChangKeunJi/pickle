@@ -31,8 +31,7 @@ import {
   LOAD_DIR_POST_SUCCESS,
 } from "../reducers/post";
 
-// ===== 사용자 카테고리 불러오기
-
+// 사용자 카테고리 불러오기
 async function loadDirAPI() {
   return axios.get("/directory");
 }
@@ -57,8 +56,7 @@ function* watchLoadDir() {
   yield takeLatest(LOAD_DIR_REQUEST, loadDir);
 }
 
-// ===== 카테고리 추가하기
-
+// 카테고리 추가하기
 async function addDirAPI(data) {
   return axios.post("/directory", data);
 }
@@ -83,8 +81,7 @@ function* watchAddDir() {
   yield takeLatest(ADD_DIR_REQUEST, addDir);
 }
 
-// ====== 카테고리 순서 변경
-
+// 카테고리 순서 변경
 async function updateOrderAPI(data) {
   return axios.patch("/directory/order", data);
 }
@@ -109,8 +106,7 @@ function* watchUpdateOrder() {
   yield takeEvery(UPDATE_ORDER_REQUEST, updateOrder);
 }
 
-// ====== 카테고리 이름 변경
-
+// 카테고리 이름 변경
 async function updateDirAPI(data) {
   return axios.patch("/directory", data);
 }
@@ -135,8 +131,7 @@ function* watchUpdateDir() {
   yield takeLatest(UPDATE_DIR_REQUEST, updateDir);
 }
 
-// ====== 카테고리 삭제
-
+// 카테고리 삭제
 async function deleteDirAPI(data) {
   return axios.delete(`/directory/${data}`);
 }
@@ -162,7 +157,6 @@ function* watchDeleteDir() {
 }
 
 // 특정 디렉토리 포스트 불러오기
-
 async function loadDirPostAPI(data) {
   return axios.get(`/directory/${data}`);
 }

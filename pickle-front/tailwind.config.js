@@ -5,12 +5,12 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ["Spoqa Han Sans Neo", "sans-serif"],
+      sans: ["Spoqa Han Sans Neo", "sans-serif", "Helvetica", "Arial"],
     },
     colors: {
       gray: "#F7F6F3",
       "gray-dark": "#DAD9D4",
-      "user-profile": "#f5691e",
+      "gray-dark2": "#9d9d9c",
       orange: "#f5691e",
       white: "#FFFFFF",
       black: "#000000",

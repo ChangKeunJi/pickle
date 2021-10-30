@@ -84,7 +84,7 @@ const Nav = ({ setOpenMenu }) => {
               addPostFailPopup
               ? "translate-y-0"
               : "-translate-y-24",
-            "transition text-center w-max duration-200 rounded-full bg-light-nav py-2 px-4 shadow-lg",
+            "transition text-center w-max duration-200 rounded-full bg-light-nav py-2 px-4 shadow-lg dark:bg-dark-black-light",
           )}
         >
           {renderText()}

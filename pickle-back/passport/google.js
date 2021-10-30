@@ -16,7 +16,6 @@ module.exports = () => {
       },
       async (accessToken, refreshToken, profile, cb) => {
         try {
-          // console.log(profile);
           const exUser = await User.findOne({
             where: { snsId: profile.id, provider: "google" },
           });

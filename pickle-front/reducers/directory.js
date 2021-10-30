@@ -40,14 +40,6 @@ export const DELETE_DIR_REQUEST = "DELETE_DIR_REQUEST";
 export const DELETE_DIR_SUCCESS = "DELETE_DIR_SUCCESS";
 export const DELETE_DIR_FAILURE = "DELETE_DIR_FAILURE";
 
-// const updateAllDir = (allDirs, dir) => {
-//   let arr = Array.from(allDirs);
-//   const updatedDir = arr.find((el) => el.id === dir.id);
-//   const index = arr.findIndex((el) => el === updatedDir);
-//   arr.splice(index, 1, dir);
-//   return arr;
-// };
-
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {

@@ -5,7 +5,15 @@ const urlMetadata = require("url-metadata");
 const { Post, Directory } = require("../models");
 const { isLoggedIn } = require("./middleware");
 
-// ===== 포스트 불러오기
+const summarizeStr = (str, num) => {
+  if (str.length <= num) {
+    return str;
+  } else {
+    return str.slice(0, num);
+  }
+};
+
+// 포스트 불러오기
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const allPosts = await Post.findAll({
@@ -20,19 +28,22 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// ===== 포스트 추가
+// 포스트 추가
 router.post("/", isLoggedIn, async (req, res, next) => {
   try {
     const data = await urlMetadata(req.body.url);
     if (data) {
       const newPost = await Post.create({
         url: data.url || data["og:url"],
-        thumbnail: data.image || data["og:image"],
-        title: data.title || data["og:title"],
-        desc: data.description || data["og:description"],
+        thumbnail: data["og:image"] || data.image,
+        title: summarizeStr(data.title || data["og:title"], 100),
+        desc: summarizeStr(data.description || data["og:description"], 200),
         favicon:
           data["og:image"] || data["msapplication-TileImage"] || data.image,
-        author: data.author || data["og:site_name"] || data.source,
+        author: summarizeStr(
+          data.author || data["og:site_name"] || data.source,
+          100
+        ),
         favorite: false,
         UserId: req.user.dataValues.id,
         DirectoryId: req.body.dirId ? req.body.dirId : null,
@@ -47,8 +58,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// ==== 포스트와 디렉토리 동시 추가
-
+// 포스트와 디렉토리 동시 추가 ( 브라우저 확장 프로그램에서 추가할 때 )
 router.post("/directory", isLoggedIn, async (req, res, next) => {
   try {
     const data = await urlMetadata(req.body.url);
@@ -81,14 +91,17 @@ router.post("/directory", isLoggedIn, async (req, res, next) => {
       const newPost = await Post.create({
         url: data.url || data["og:url"],
         thumbnail: data["og:image"] || data.image,
-        title: data.title || data["og:title"],
-        desc: data.description || data["og:description"],
+        title: summarizeStr(data.title || data["og:title"], 100),
+        desc: summarizeStr(data.description || data["og:description"], 200),
         favicon:
-          data["msapplication-TileImage"] || data.image || data["og:image"],
-        author: data.author || data["og:site_name"] || data.source,
+          data["og:image"] || data["msapplication-TileImage"] || data.image,
+        author: summarizeStr(
+          data.author || data["og:site_name"] || data.source,
+          100
+        ),
         favorite: false,
         UserId: req.user.dataValues.id,
-        DirectoryId: newDir.id,
+        DirectoryId: req.body.dirId ? req.body.dirId : null,
       });
 
       res.send({ newPost, newDir });
@@ -101,8 +114,7 @@ router.post("/directory", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// ===== 포스트 삭제
-
+// 포스트 삭제
 router.delete("/:postId", async (req, res, next) => {
   try {
     const id = req.params.postId;
@@ -118,8 +130,7 @@ router.delete("/:postId", async (req, res, next) => {
   }
 });
 
-// ===== 포스트 즐겨찾기
-
+// 포스트 즐겨찾기 추가 or 삭제
 router.patch("/fav", async (req, res, next) => {
   try {
     const bool = !req.body.bool;
@@ -144,8 +155,7 @@ router.patch("/fav", async (req, res, next) => {
   }
 });
 
-// 즐겨찾기 포스트 불러오기
-
+// 즐겨찾기 포스트만 불러오기
 router.get("/favorite", isLoggedIn, async (req, res, next) => {
   try {
     const favPosts = await Post.findAll({

@@ -4,6 +4,14 @@ const router = express.Router();
 const { Directory, Post } = require("../models");
 const { isLoggedIn } = require("./middleware");
 
+const summarizeStr = (str, num) => {
+  if (str.length <= num) {
+    return str;
+  } else {
+    return str.slice(0, num);
+  }
+};
+
 // 모든 카테고리 불러오기
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
@@ -41,7 +49,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
     }
 
     const newDir = await Directory.create({
-      name: req.body.name,
+      name: summarizeStr(req.body.name, 100),
       UserId: req.user.dataValues.id,
       order: order,
     });
@@ -82,7 +90,7 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
   try {
     await Directory.update(
       {
-        name: req.body.name,
+        name: summarizeStr(req.body.name, 100),
       },
       {
         where: { id: req.body.id },
@@ -98,7 +106,6 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
 });
 
 // 카테고리 삭제
-
 router.delete("/:dirId", isLoggedIn, async (req, res, next) => {
   try {
     const id = req.params.dirId;
@@ -114,8 +121,7 @@ router.delete("/:dirId", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// 특정 디렉토리 포스트 불러오기
-
+// 특정 카테고리 포스트 불러오기
 router.get("/:dirId", isLoggedIn, async (req, res, next) => {
   try {
     const dirId = req.params.dirId;

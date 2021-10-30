@@ -1,4 +1,3 @@
-const { DataTypes } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   const Directory = sequelize.define(
     "Directory",
@@ -8,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       order: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
       },
     },
@@ -23,11 +22,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Directory;
 };
-
-// https://blog.daum.net/question0921/539
-// id: {
-//     type: DataTypes.UUID,
-//         defaultValue: DataTypes.UUIDV4,
-//         primaryKey: true,
-//
-// },

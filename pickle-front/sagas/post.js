@@ -22,10 +22,7 @@ import {
 } from "../reducers/post";
 import { ADD_DIR_SUCCESS } from "../reducers/directory";
 
-// 포스트 추가하기
-
 // 모든 포스트 불러오기
-
 async function loadPostAPI() {
   return axios.get("/post");
 }
@@ -76,7 +73,6 @@ function* watchAddPost() {
 }
 
 // 포스트와 디렉토리 동시 추가
-
 async function addPostDirAPI(data) {
   return axios.post("/post/directory", data);
 }
@@ -111,7 +107,6 @@ function* watchAddPostDir() {
 }
 
 // 포스트 삭제
-
 async function deletePostAPI(data) {
   return axios.delete(`/post/${data}`);
 }
@@ -137,7 +132,6 @@ function* watchDeletePost() {
 }
 
 // 포스트 즐겨찾기 추가
-
 async function addRemoveFavPostAPI(data) {
   return axios.patch("/post/fav", data);
 }
@@ -163,7 +157,6 @@ function* watchAddRemoveFavPost() {
 }
 
 // 즐겨찾기 포스트 불러오기
-
 async function loadFavPostAPI() {
   return axios.get(`/post/favorite`);
 }
