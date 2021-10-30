@@ -7,6 +7,7 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
+  console.log(process.env.NODE_ENV);
   console.log(req.session);
   if (req.user) {
     const user = await User.findOne({
