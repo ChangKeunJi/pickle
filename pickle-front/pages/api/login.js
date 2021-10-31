@@ -1,10 +1,5 @@
-import { getSession } from "next-auth/client";
-
-const handler = async (req, res) => {
-  const session = await getSession({ req });
-  if (session) {
-    res.send(session);
-  }
-};
-
-export default handler;
+export default function handler(req, res) {
+  console.log(req.signedCookies);
+  console.log(req.cookies);
+  res.redirect("/");
+}
