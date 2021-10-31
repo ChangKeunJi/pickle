@@ -27,6 +27,7 @@ router.get(
   }),
   (req, res) => {
     // console.log(req.signedCookies, "COOKIE");
+    console.log(req.cookies);
     console.log(req.signedCookies);
     res.redirect("http://3.38.99.75/api/login");
   }
