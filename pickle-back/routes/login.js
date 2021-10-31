@@ -26,9 +26,7 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    console.log(req.user, "USER");
-    console.log(req.cookies, "COOKIE");
-    console.log(res.cookie, "RES COOKIE");
+    console.log(req.signedCookies, "COOKIE");
     res.redirect(frontUrl);
   }
 );
