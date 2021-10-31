@@ -49,8 +49,11 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-// app.set("trust proxy", 1);
+
+const routesArr = ["/login/kakao/callback", "/login/kakao"];
+
 app.use(
+  routesArr,
   session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
