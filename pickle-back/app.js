@@ -45,7 +45,7 @@ app.use(
 //! ----------
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //! ----------
-
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));

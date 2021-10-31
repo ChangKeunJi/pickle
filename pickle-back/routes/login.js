@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const { User } = require("../models");
+
 const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
@@ -26,7 +27,6 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    // res.clearCookie("connect.sid");
     console.log(req.session);
     console.log(req.cookies);
     console.log(req.signedCookies);
