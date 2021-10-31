@@ -26,9 +26,10 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    console.log(req.session);
-    console.log(req.cookies);
-    console.log(req.signedCookies);
+    res.clearCookie("connect.sid");
+    // console.log(req.session);
+    // console.log(req.cookies);
+    // console.log(req.signedCookies);
     // res.redirect("http://3.38.99.75/api/login");
     res.redirect(frontUrl);
   }
