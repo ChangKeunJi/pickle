@@ -9,6 +9,7 @@ const frontUrl = "http://3.38.99.75";
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
   const id = req.cookies["passportId"];
+  console.log(id, "//////");
   if (!id) {
     return res.send(null);
   }
@@ -50,8 +51,10 @@ router.get(
       // res.redirect("http://localhost:3000");
     } else {
       const passportId = req.session.passport["user"];
+      console.log(req.session, "/callback");
+      console.log(passportId, "/callback");
       res.cookie("passportId", passportId);
-      res.redirect(`${frontUrl}/api/login`);
+      res.redirect("http://3.38.99.75/api/login");
     }
   }
 );
