@@ -8,6 +8,7 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
+  console.log(req.headers, "😊😊😊😊😊😊😊");
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -28,14 +29,10 @@ router.get(
   }),
   (req, res) => {
     if (mode === "development") {
-      console.log(req.sessionID, "/callback");
       const sessionId = req.sessionID;
-      console.log(sessionId, "/callback");
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
-      console.log(req.sessionID, "/callback");
       const sessionId = req.sessionID;
-      console.log(sessionId, "/callback");
       res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
   }
