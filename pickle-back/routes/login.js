@@ -29,12 +29,19 @@ router.get(
   }),
   (req, res) => {
     if (mode === "development") {
-      console.log(req, "🍎🍎🍎🍎🍎🍎🍎");
+      // console.log(req.user, "🍎🍎🍎🍎🍎🍎🍎");
+      req.login(req.user, () => {
+        router.get("/kakao", passport.authenticate("kakao"));
+      });
       const sessionId = req.sessionID;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
-      const sessionId = req.sessionID;
-      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
+      req.login(req.user, () => {
+        router.get("/kakao", passport.authenticate("kakao"));
+      });
+      res.redirect("http://3.38.99.75/");
+      // const sessionId = req.sessionID;
+      // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
   }
 );
