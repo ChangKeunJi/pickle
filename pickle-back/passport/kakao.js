@@ -14,6 +14,7 @@ module.exports = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          // console.log(profile);
           const exUser = await User.findOne({
             where: { snsId: profile.id, provider: "kakao" },
           });
@@ -26,6 +27,7 @@ module.exports = () => {
               snsId: profile.id,
               provider: "kakao",
             });
+
             done(null, newUser);
           }
         } catch (err) {

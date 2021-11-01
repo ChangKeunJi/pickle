@@ -1,5 +1,11 @@
+import Cookies from "js-cookie";
+
 export default function handler(req, res) {
-  console.log(req.signedCookies);
-  console.log(req.cookies);
+  const data = req.cookies["passportId"];
+  Cookies.set("passportId", data, { path: "/" });
+  // res.setHeader("Set-Cookie", { sessionId: data }, { path: "/" });
   res.redirect("/");
+  // res.json({
+  //   "req.cookies": req.cookies,
+  // });
 }

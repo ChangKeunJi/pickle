@@ -1,14 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-
-const { User } = require("../models");
+const mode = process.env.NODE_ENV;
+const { User, Session } = require("../models");
 
 const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  if (req.user) {
+  const id = req.cookies["passportId"];
+  const user = await User.findOne({
+    where: { id: id },
+  });
+  if (user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
     });
@@ -16,6 +20,15 @@ router.get("/", async (req, res) => {
   } else {
     res.send("null");
   }
+
+  // if (req.user) {
+  //   const user = await User.findOne({
+  //     where: { id: req.user.dataValues.id },
+  //   });
+  //   res.send(user);
+  // } else {
+  //   res.send("null");
+  // }
 });
 
 // 카카오 로그인
@@ -27,11 +40,16 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    console.log(req.session);
-    console.log(req.cookies);
-    console.log(req.signedCookies);
-    // res.redirect("http://3.38.99.75/api/login");
-    res.redirect(frontUrl);
+    if (mode === "development") {
+      const passportId = req.session.passport["user"];
+      res.cookie("passportId", passportId);
+      res.redirect("http://localhost:3000/api/login");
+      // res.redirect("http://localhost:3000");
+    } else {
+      const passportId = req.session.passport["user"];
+      res.cookie("passportId", passportId);
+      res.redirect(`${frontUrl}/api/login`);
+    }
   }
 );
 

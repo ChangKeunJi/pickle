@@ -18,8 +18,6 @@ dotenv.config();
 const app = express();
 passportConfig();
 
-const frontUrl = "http://3.38.99.75";
-
 db.sequelize
   .sync()
   .then(() => {
@@ -35,9 +33,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
 }
 
+const frontUrl = "http://3.38.99.75";
 app.use(
   cors({
-    origin: ["http://localhost:3000", frontUrl, "pickle-pickle.kr"],
+    origin: [true, "http://localhost:3000", frontUrl, "pickle-pickle.kr"],
     credentials: true,
   })
 );
@@ -49,18 +48,14 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-
-const routesArr = ["/login/kakao/callback", "/login/kakao"];
-
 app.use(
-  routesArr,
   session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
     proxy: process.env.NODE_ENV === "production",
     cookie: {
-      maxAge: new Date(Number(new Date()) + 315360000000),
+      maxAge: 315360000000, // 10년 : 1000 * 60 * 60 * 24 * 365 * 10
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       domain: process.env.NODE_ENV === "production" && frontUrl,
@@ -82,6 +77,14 @@ app.use("/post", postRouter);
 app.use("/login", loginRouter);
 app.use("/directory", directoryRouter);
 
-app.listen(80, () => {
-  console.log("실행 중");
-});
+const mode = process.env.NODE_ENV === "development";
+
+if (mode) {
+  app.listen(3065, () => {
+    console.log("실행 중");
+  });
+} else {
+  app.listen(80, () => {
+    console.log("실행 중");
+  });
+}

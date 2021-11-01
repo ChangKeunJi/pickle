@@ -16,10 +16,12 @@ const sequelize = new Sequelize(
 const user = require("./user")(sequelize, Sequelize);
 const post = require("./post")(sequelize, Sequelize);
 const directory = require("./directory")(sequelize, Sequelize);
+// const session = require("./session")(sequelize, Sequelize);
 
 db.User = user;
 db.Post = post;
 db.Directory = directory;
+// db.Session = session;
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

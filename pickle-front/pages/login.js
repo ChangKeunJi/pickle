@@ -15,6 +15,7 @@ import { END } from "redux-saga";
 
 const Login = () => {
   const { me } = useSelector((state) => state.user);
+  const mode = process.env.NODE_ENV === "development";
 
   // 로그인이 되어있다면 홈 화면으로 이동
   useEffect(() => {
@@ -24,12 +25,20 @@ const Login = () => {
   }, [me]);
 
   const onClickKakao = useCallback(() => {
-    Router.replace(`${backUrl}/login/kakao`);
-  }, []);
+    if (!mode) {
+      Router.replace(`${backUrl}/login/kakao`);
+    } else {
+      Router.replace(`http://localhost:3065/login/kakao`);
+    }
+  }, [mode]);
 
   const onClickGoogle = useCallback(() => {
-    Router.replace(`${backUrl}/login/google`);
-  }, []);
+    if (!mode) {
+      Router.replace(`${backUrl}/login/google`);
+    } else {
+      Router.replace(`http://localhost:3065/login/kakao`);
+    }
+  }, [mode]);
 
   return (
     <section className="container mt-12">
