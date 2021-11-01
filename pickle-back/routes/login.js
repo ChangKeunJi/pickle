@@ -37,7 +37,7 @@ router.get(
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       req.login(req.user, () => {
-        router.get("/kakao", passport.authenticate("kakao"));
+        passport.authenticate("kakao");
       });
       res.redirect("http://3.38.99.75/");
       // const sessionId = req.sessionID;
