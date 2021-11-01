@@ -28,7 +28,7 @@ router.get(
   passport.authenticate("kakao", {
     failureRedirect: "/login",
   }),
-  async (req, res) => {
+  (req, res) => {
     if (mode === "development") {
       // console.log(req.user, "🍎🍎🍎🍎🍎🍎🍎");
       req.login(req.user, () => {
@@ -37,7 +37,9 @@ router.get(
       const sessionId = req.sessionID;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
-      await passportFunc();
+      req.login(req.user, () => {
+        passport.authenticate("kakao");
+      });
       res.redirect("http://3.38.99.75/");
 
       // const sessionId = req.sessionID;
