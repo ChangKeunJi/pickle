@@ -29,6 +29,7 @@ router.get(
   }),
   (req, res) => {
     if (mode === "development") {
+      console.log(req, "🍎🍎🍎🍎🍎🍎🍎");
       const sessionId = req.sessionID;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
