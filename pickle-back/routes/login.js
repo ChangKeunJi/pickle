@@ -55,7 +55,7 @@ router.get(
       // console.log(req.session, "/callback");
       // console.log(passportId, "/callback");
       res.cookie("passportId", passportId);
-      res.redirect("http://3.38.99.75/api/login");
+      res.redirect("http://3.38.99.75/");
     }
   }
 );
