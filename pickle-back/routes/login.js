@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const mode = process.env.NODE_ENV;
 const { User } = require("../models");
+const passportFunc = require("../passport/index");
 
 const frontUrl = "http://3.38.99.75";
 
@@ -27,7 +28,7 @@ router.get(
   passport.authenticate("kakao", {
     failureRedirect: "/login",
   }),
-  (req, res) => {
+  async (req, res) => {
     if (mode === "development") {
       // console.log(req.user, "🍎🍎🍎🍎🍎🍎🍎");
       req.login(req.user, () => {
@@ -36,10 +37,9 @@ router.get(
       const sessionId = req.sessionID;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
-      req.login(req.user, () => {
-        passport.authenticate("kakao");
-      });
+      await passportFunc();
       res.redirect("http://3.38.99.75/");
+
       // const sessionId = req.sessionID;
       // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
