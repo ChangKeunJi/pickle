@@ -9,6 +9,9 @@ const frontUrl = "http://3.38.99.75";
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
   const id = req.cookies["passportId"];
+  if (!id) {
+    res.send(null);
+  }
   const user = await User.findOne({
     where: { id: id },
   });
