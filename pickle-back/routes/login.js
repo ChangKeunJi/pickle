@@ -10,14 +10,14 @@ const frontUrl = "http://3.38.99.75";
 router.get("/", async (req, res) => {
   console.log(req.cookies);
   console.log(req.session);
-  const id = req.cookies["passportId"];
-  if (!id) {
-    return res.send(null);
-  }
-  const user = await User.findOne({
-    where: { id: id },
-  });
-  if (user) {
+  // const id = req.cookies["passportId"];
+  // if (!id) {
+  //   return res.send(null);
+  // }
+  // const user = await User.findOne({
+  //   where: { id: id },
+  // });
+  if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
     });
@@ -51,11 +51,8 @@ router.get(
       res.redirect("http://localhost:3000/api/login");
       // res.redirect("http://localhost:3000");
     } else {
-      const passportId = req.session.passport["user"];
-      // console.log(req.session, "/callback");
-      // console.log(passportId, "/callback");
-      res.cookie("passportId", passportId);
-      res.redirect("http://3.38.99.75/");
+      const sessionId = req.sessionID;
+      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
   }
 );
