@@ -35,9 +35,16 @@ router.get(
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       // 배포환경
-      console.log(req.cookies, "😄😄😄");
-      // const sessionId = req.sessionID;
-      // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
+      // console.log(req.cookies, "😄😄😄");
+      // console.log(req.session);
+      // console.log(req.cookies.passportId);
+      // // res.redirect(`http://3.38.99.75/api/login?sid=${req.cookies["passportId"]}`);
+      // res.redirect(
+      //   `http://3.38.99.75/api/login?sid=${req.cookies["passportId"]}`
+      );
+      //---
+      const sessionId = req.sessionID;
+      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
   }
 );
