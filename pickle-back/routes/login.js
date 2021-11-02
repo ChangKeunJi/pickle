@@ -23,48 +23,24 @@ router.get("/", async (req, res) => {
 // 카카오 로그인
 router.get("/kakao", passport.authenticate("kakao"));
 
-// router.get(
-//   "/kakao/callback",
-//   passport.authenticate("kakao", {
-//     failureRedirect: "/login",
-//   }),
-//   (req, res) => {
-//     if (mode === "development") {
-//       // 개발환경
-//       const sessionId = req.sessionID;
-//       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
-//     } else {
-//       // 배포환경
-//       req.login(req.user, (req, res) => {
-//         console.log(req.user);
-//         console.log(req.session);
-//         res.redirect(`http://3.38.99.75/`);
-//       });
-//       // const sessionId = req.sessionID;
-//       // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
-//     }
-//   }
-// );
-
-router.get("/kakao/callback", function (req, res, next) {
-  passport.authenticate("kakao", function (err, user, info) {
-    if (err) {
-      console.log("ERROR😊😊");
-      return next(err);
+router.get(
+  "/kakao/callback",
+  passport.authenticate("kakao", {
+    failureRedirect: "/login",
+  }),
+  (req, res) => {
+    if (mode === "development") {
+      // 개발환경
+      const sessionId = req.sessionID;
+      res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
+    } else {
+      // 배포환경
+      console.log(req.user, "😄😄😄");
+      // const sessionId = req.sessionID;
+      // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
-    if (!user) {
-      console.log("NO USER😊😊");
-      return res.redirect(`http://3.38.99.75/login`);
-    }
-    req.logIn(user, function (err) {
-      console.log("LOGIN😊😊");
-      if (err) {
-        return next(err);
-      }
-      return res.redirect(`http://3.38.99.75/`);
-    });
-  })(req, res, next);
-});
+  }
+);
 
 // 구글 로그인
 
