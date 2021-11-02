@@ -24,6 +24,7 @@ router.get("/kakao", passport.authenticate("kakao"));
 router.get("/kakao/callback", (req, res, next) => {
   passport.authenticate("kakao", (user) => {
     return req.login(user, () => {
+      passport.authenticate("kakao");
       res.redirect("http://3.38.99.75/");
     });
   })(req, res, next);
