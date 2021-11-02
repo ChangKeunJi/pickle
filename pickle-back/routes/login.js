@@ -30,18 +30,13 @@ router.get(
   }),
   (req, res) => {
     if (mode === "development") {
-      // console.log(req.user, "🍎🍎🍎🍎🍎🍎🍎");
-      req.login(req.user, () => {
-        router.get("/kakao", passport.authenticate("kakao"));
-      });
+      // 개발환경
       const sessionId = req.sessionID;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
-      req.login(req.user, () => {
-        passport.authenticate("kakao");
-      });
-      res.redirect("http://3.38.99.75/");
-
+      // 배포환경
+      passport.authenticate("kakao");
+      res.redirect(`http://3.38.99.75/`);
       // const sessionId = req.sessionID;
       // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
