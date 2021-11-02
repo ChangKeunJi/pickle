@@ -35,7 +35,9 @@ router.get(
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       // 배포환경
-      req.login(req.user, () => {
+      req.login(req.user, (req, res) => {
+        console.log(req.user);
+        console.log(req.session);
         res.redirect(`http://3.38.99.75/`);
       });
       // const sessionId = req.sessionID;
