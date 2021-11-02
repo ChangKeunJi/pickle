@@ -9,7 +9,7 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  console.log(req.headers, "😊😊😊😊😊😊😊");
+  // console.log(req.headers, "😊😊😊😊😊😊😊");
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -49,13 +49,15 @@ router.get("/kakao", passport.authenticate("kakao"));
 router.get("/kakao/callback", function (req, res, next) {
   passport.authenticate("kakao", function (err, user, info) {
     if (err) {
+      console.log("ERROR😊😊");
       return next(err);
     }
     if (!user) {
-      console.log("NO USER");
+      console.log("NO USER😊😊");
       return res.redirect(`http://3.38.99.75/login`);
     }
     req.logIn(user, function (err) {
+      console.log("LOGIN😊😊");
       if (err) {
         return next(err);
       }
