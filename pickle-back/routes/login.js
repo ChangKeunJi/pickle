@@ -8,33 +8,17 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  console.log(req.cookies.passportId, "😊😊😊😊😊😊😊");
-  const id = req.cookies.passportId;
-  if (!id) {
-    return res.end(null);
-  }
-  // console.log(id, "😊😊😊😊😊");
+  console.log(req.headers, "😊😊😊😊😊😊😊");
+  console.log(req.user, "😊😊😊😊😊😊😊");
 
-  const user = await User.findOne({
-    where: { id: Number(id) },
-  });
-
-  console.log(user, "😊😊😊😊😊");
-
-  if (user) {
+  if (req.user) {
+    const user = await User.findOne({
+      where: { id: req.user.dataValues.id },
+    });
     res.send(user);
   } else {
-    res.send(null);
+    res.send("null");
   }
-
-  // if (req.user) {
-  //   const user = await User.findOne({
-  //     where: { id: req.user.dataValues.id },
-  //   });
-  //   res.send(user);
-  // } else {
-  //   res.send("null");
-  // }
 });
 
 // 카카오 로그인
@@ -45,16 +29,20 @@ router.get(
   passport.authenticate("kakao", {
     failureRedirect: "/login",
   }),
-  (req, res) => {
+  async (req, res) => {
     if (mode === "development") {
       // 개발환경
       const sessionId = req.cookies.passportId;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       // 배포환경
-      const sessionId = req.cookies.passportId;
-      // const sessionId = req.sessionID;
-      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
+      const id = req.cookies.passportId;
+      const user = await User.findOne({ where: { id: Number(id) } });
+      req.login(user, () => {
+        res.redirect("http://3.38.99.75/");
+      });
+      // const sessionId = req.cookies.passportId;
+      // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
   }
 );
