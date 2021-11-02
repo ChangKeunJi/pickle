@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 const mode = process.env.NODE_ENV;
 const { User } = require("../models");
-const passportFunc = require("../passport/index");
 
 const frontUrl = "http://3.38.99.75";
 
@@ -14,11 +13,13 @@ router.get("/", async (req, res) => {
   if (!id) {
     return res.end(null);
   }
-  console.log(id, "😊😊😊😊😊");
+  // console.log(id, "😊😊😊😊😊");
 
   const user = await User.findOne({
     where: { id: Number(id) },
   });
+
+  console.log(user, "😊😊😊😊😊");
 
   if (user) {
     res.send(user);
@@ -47,7 +48,7 @@ router.get(
   (req, res) => {
     if (mode === "development") {
       // 개발환경
-      const sessionId = req.sessionID;
+      const sessionId = req.cookies.passportId;
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       // 배포환경
