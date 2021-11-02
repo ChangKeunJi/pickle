@@ -11,6 +11,9 @@ const frontUrl = "http://3.38.99.75";
 router.get("/", async (req, res) => {
   // console.log(req.headers.cookie["passportId"], "😊😊😊😊😊😊😊");
   const id = req.headers.cookie["passportId"];
+  if (!id) {
+    res.end(null);
+  }
   console.log(id, "😊😊😊😊😊");
 
   const user = await User.findOne({
@@ -20,7 +23,7 @@ router.get("/", async (req, res) => {
   if (user) {
     res.send(user);
   } else {
-    res.send("null");
+    res.send(null);
   }
 
   // if (req.user) {
