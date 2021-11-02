@@ -38,7 +38,9 @@ router.get(
       // 배포환경
       const id = req.cookies.passportId;
       const user = await User.findOne({ where: { id: Number(id) } });
-      req.login(user, () => {
+      console.log(user, "UPPPPPP");
+      req.login(user, (req, res) => {
+        console.log(req.user, "DOWNNNNNN");
         res.redirect("http://3.38.99.75/");
       });
       // const sessionId = req.cookies.passportId;
