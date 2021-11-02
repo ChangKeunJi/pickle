@@ -32,12 +32,14 @@ router.get(
   async (req, res) => {
     if (mode === "development") {
       // 개발환경
-      res.redirect(`http://localhost:3000/`);
+      res.redirect("http://localhost:3000");
     } else {
       // 배포환경
       const sessionId = req.sessionID;
-      console.log(sessionId, "🍎");
-      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
+      const passportId = req.session.passport.user;
+      res.redirect(
+        `http://3.38.99.75/api/login?sid=${sessionId}&pid=${passportId}`
+      );
     }
   }
 );
