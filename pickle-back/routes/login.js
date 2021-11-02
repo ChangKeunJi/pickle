@@ -8,6 +8,9 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
+  console.log(req.session);
+  console.log(req.cookies);
+  console.log(req.headers);
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -21,37 +24,23 @@ router.get("/", async (req, res) => {
 // 카카오 로그인
 router.get("/kakao", passport.authenticate("kakao"));
 
-router.get("/kakao/callback", (req, res, next) => {
-  passport.authenticate("kakao", (user) => {
-    return req.login(user, () => {
-      passport.authenticate("kakao");
-      res.redirect("http://3.38.99.75/");
-    });
-  })(req, res, next);
-});
-
-// router.get(
-//   "/kakao/callback",
-//   passport.authenticate("kakao", {
-//     failureRedirect: "/login",
-//   }),
-//   async (req, res) => {
-//     if (mode === "development") {
-//       // 개발환경
-//       const sessionId = req.cookies.passportId;
-//       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
-//     } else {
-//       // 배포환경
-//       const id = req.cookies.passportId;
-//       const user = await User.findOne({ where: { id: Number(id) } });
-//
-//       req.login(user);
-//
-//       // const sessionId = req.cookies.passportId;
-//       // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
-//     }
-//   }
-// );
+router.get(
+  "/kakao/callback",
+  passport.authenticate("kakao", {
+    failureRedirect: "/login",
+  }),
+  async (req, res) => {
+    if (mode === "development") {
+      // 개발환경
+      res.redirect(`http://localhost:3000/`);
+    } else {
+      // 배포환경
+      const sessionId = req.sessionID;
+      console.log(sessionId, "🍎");
+      res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
+    }
+  }
+);
 
 // 구글 로그인
 
