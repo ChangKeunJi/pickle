@@ -9,15 +9,28 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  console.log(req.headers, "😊😊😊😊😊😊😊");
-  if (req.user) {
-    const user = await User.findOne({
-      where: { id: req.user.dataValues.id },
-    });
+  // console.log(req.headers.cookie["passportId"], "😊😊😊😊😊😊😊");
+  const id = req.headers.cookie["passportId"];
+  console.log(id, "😊😊😊😊😊");
+
+  const user = await User.findOne({
+    where: { id: id },
+  });
+
+  if (user) {
     res.send(user);
   } else {
     res.send("null");
   }
+
+  // if (req.user) {
+  //   const user = await User.findOne({
+  //     where: { id: req.user.dataValues.id },
+  //   });
+  //   res.send(user);
+  // } else {
+  //   res.send("null");
+  // }
 });
 
 // 카카오 로그인
