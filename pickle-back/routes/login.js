@@ -39,7 +39,7 @@ router.get(
       const id = req.cookies.passportId;
       const user = await User.findOne({ where: { id: Number(id) } });
       console.log(user, "UPPPPPP");
-      req.login(user, (req, res) => {
+      req.login(user, () => {
         console.log(req.user, "DOWNNNNNN");
         res.redirect("http://3.38.99.75/");
       });
