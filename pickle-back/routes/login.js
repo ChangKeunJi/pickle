@@ -35,8 +35,9 @@ router.get(
       res.redirect(`http://localhost:3000/api/login?sid=${sessionId}`);
     } else {
       // 배포환경
-      passport.authenticate("kakao");
-      res.redirect(`http://3.38.99.75/`);
+      req.login(req.user, () => {
+        res.redirect(`http://3.38.99.75/`);
+      });
       // const sessionId = req.sessionID;
       // res.redirect(`http://3.38.99.75/api/login?sid=${sessionId}`);
     }
