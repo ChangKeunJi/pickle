@@ -8,9 +8,6 @@ const frontUrl = "http://3.38.99.75";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
-  console.log(req.headers, "😊😊😊😊😊😊😊");
-  console.log(req.user, "😊😊😊😊😊😊😊");
-
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -38,9 +35,9 @@ router.get(
       // 배포환경
       const id = req.cookies.passportId;
       const user = await User.findOne({ where: { id: Number(id) } });
-      console.log(user, "UPPPPPP");
+      // console.log(user, "UPPPPPP");
       req.login(user, () => {
-        console.log(req.user, "DOWNNNNNN");
+        console.log(req.user, "😄😄😄😄");
         res.redirect("http://3.38.99.75/");
       });
       // const sessionId = req.cookies.passportId;
