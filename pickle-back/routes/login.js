@@ -12,12 +12,12 @@ router.get("/", async (req, res) => {
   // console.log(req.headers.cookie["passportId"], "😊😊😊😊😊😊😊");
   const id = req.headers.cookie["passportId"];
   if (!id) {
-    res.end(null);
+    return res.end(null);
   }
   console.log(id, "😊😊😊😊😊");
 
   const user = await User.findOne({
-    where: { id: id },
+    where: { id: Number(id) },
   });
 
   if (user) {
