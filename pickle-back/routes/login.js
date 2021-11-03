@@ -36,6 +36,7 @@ router.get(
       // );
       // console.log(req.headers, "🍎");
       // console.log(req.session, "🍎");
+      console.log(req.sessionID, "🍎");
       res.redirect("http://3.36.254.124");
     }
   }

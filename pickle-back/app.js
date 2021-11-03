@@ -44,10 +44,10 @@ app.use(
 //! ----------
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //! ----------
+// app.use(cookieParser(process.env.COOKIE_SECRET));
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -68,10 +68,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-//
-// app.get("/", (req, res) => {
-//   res.send("Hello API");
-// });
 
 app.use("/post", postRouter);
 app.use("/login", loginRouter);
@@ -88,3 +84,7 @@ if (mode) {
     console.log("실행 중");
   });
 }
+//
+// app.get("/", (req, res) => {
+//   res.send("Hello API");
+// });
