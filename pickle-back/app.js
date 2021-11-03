@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
 }
 
-const frontUrl = "http://52.79.235.32";
+const frontUrl = "http://3.36.254.124";
 app.use(
   cors({
     origin: [true, "http://localhost:3000", frontUrl, "pickle-pickle.kr"],
@@ -69,9 +69,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.get("/", (req, res) => {
-//   res.send("Hello API");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello API");
+});
 
 app.use("/post", postRouter);
 app.use("/login", loginRouter);
@@ -84,7 +84,7 @@ if (mode) {
     console.log("실행 중");
   });
 } else {
-  app.listen(16, () => {
+  app.listen(3065, () => {
     console.log("실행 중");
   });
 }

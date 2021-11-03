@@ -27,7 +27,7 @@ const Auth = () => {
 
   const onClickKakao = useCallback(() => {
     if (!mode) {
-      Router.replace(`http://52.79.235.32:16/login/kakao`);
+      Router.replace(`http://3.36.254.124:3065/login/kakao`);
     } else {
       Router.replace(`http://localhost:3065/login/kakao`);
     }
