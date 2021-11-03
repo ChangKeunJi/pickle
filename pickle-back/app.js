@@ -84,7 +84,7 @@ if (mode) {
     console.log("실행 중");
   });
 } else {
-  app.listen(80, () => {
+  app.listen(3065, () => {
     console.log("실행 중");
   });
 }

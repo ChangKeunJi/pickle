@@ -34,8 +34,8 @@ router.get(
       // res.redirect(
       //   `http://${frontUrl}/api/login?sid=${sessionId}&pid=${passportId}`
       // );
-      console.log(req.headers, "🍎");
-      console.log(req.session, "🍎");
+      // console.log(req.headers, "🍎");
+      // console.log(req.session, "🍎");
       res.redirect("http://3.36.254.124");
     }
   }
