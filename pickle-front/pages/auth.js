@@ -12,7 +12,7 @@ import axios from "axios";
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
 import { END } from "redux-saga";
 
-const url = "";
+import { backUrl } from "../config/config";
 
 const Auth = () => {
   const { me } = useSelector((state) => state.user);
@@ -27,7 +27,7 @@ const Auth = () => {
 
   const onClickKakao = useCallback(() => {
     if (!mode) {
-      Router.replace(`${url}/login/kakao`);
+      Router.replace(`${backUrl}/login/kakao`);
     } else {
       Router.replace(`http://localhost:3065/login/kakao`);
     }
@@ -35,7 +35,7 @@ const Auth = () => {
 
   const onClickGoogle = useCallback(() => {
     if (!mode) {
-      Router.replace(`${url}/login/google`);
+      Router.replace(`${backUrl}/login/google`);
     } else {
       Router.replace(`http://localhost:3065/login/kakao`);
     }

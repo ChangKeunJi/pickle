@@ -4,19 +4,18 @@ const passport = require("passport");
 const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
-const frontUrl = "http://52.78.8.137";
-
-// 유저 정보 불러오기
-router.get("/", async (req, res) => {
-  if (req.user) {
-    const user = await User.findOne({
-      where: { id: req.user.dataValues.id },
-    });
-    res.send(user);
-  } else {
-    res.send("null");
-  }
-});
+const frontUrl = process.env// 유저 정보 불러오기
+.router
+  .get("/", async (req, res) => {
+    if (req.user) {
+      const user = await User.findOne({
+        where: { id: req.user.dataValues.id },
+      });
+      res.send(user);
+    } else {
+      res.send("null");
+    }
+  });
 
 // 카카오 로그인
 router.get("/kakao", passport.authenticate("kakao"));
