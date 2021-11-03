@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
 }
 
-const frontUrl = "http://3.38.99.75";
+const frontUrl = "http://52.78.8.137";
 app.use(
   cors({
     origin: [true, "http://localhost:3000", frontUrl, "pickle-pickle.kr"],
@@ -84,7 +84,7 @@ if (mode) {
     console.log("실행 중");
   });
 } else {
-  app.listen(80, () => {
+  app.listen(16, () => {
     console.log("실행 중");
   });
 }
