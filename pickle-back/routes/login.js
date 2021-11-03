@@ -5,8 +5,8 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
-  console.log(req.headers, "🍎");
-  console.log(req.session, "🍎");
+  // console.log(req.headers, "🍎");
+  // console.log(req.session, "🍎");
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -34,6 +34,8 @@ router.get(
       // res.redirect(
       //   `http://${frontUrl}/api/login?sid=${sessionId}&pid=${passportId}`
       // );
+      console.log(req.headers, "🍎");
+      console.log(req.session, "🍎");
       res.redirect("http://52.79.235.32");
     }
   }
