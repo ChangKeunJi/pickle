@@ -5,6 +5,8 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
+  console.log(req.headers, "🍎");
+  console.log(req.session, "🍎");
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
