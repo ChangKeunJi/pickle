@@ -52,7 +52,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("http://52.79.235.32");
+    res.redirect("http://3.36.254.124");
   }
 );
 

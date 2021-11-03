@@ -68,10 +68,10 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.get("/", (req, res) => {
-  res.send("Hello API");
-});
+//
+// app.get("/", (req, res) => {
+//   res.send("Hello API");
+// });
 
 app.use("/post", postRouter);
 app.use("/login", loginRouter);
@@ -84,7 +84,7 @@ if (mode) {
     console.log("실행 중");
   });
 } else {
-  app.listen(3065, () => {
+  app.listen(80, () => {
     console.log("실행 중");
   });
 }
