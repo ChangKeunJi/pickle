@@ -27,6 +27,10 @@ const DirectoryBar = ({ setOpenMenu }) => {
   }, []);
 
   useEffect(() => {
+    setState(allDirs);
+  }, [allDirs]);
+
+  useEffect(() => {
     // 카테고리 추가 시 상태 업데이트 위해서
     if (state.length !== allDirs.length) {
       setState(allDirs);

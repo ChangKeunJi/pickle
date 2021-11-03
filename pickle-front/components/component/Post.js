@@ -77,7 +77,9 @@ const Post = ({ post, dirName }) => {
       <div className="flex z-0 relative items-start justify-between flex-col p-4 h-full">
         {dirName && hover ? (
           <div className="absolute z-50 top-6 left-6 bg-white shadow-md py-1 px-2 rounded-full">
-            <p className="tracking-widest text-lg">{dirName}</p>
+            <p className="tracking-widest text-lg">
+              {summarizeStr(dirName, 15)}
+            </p>
           </div>
         ) : null}
         <div className="flex flex-col gap-2 w-full">

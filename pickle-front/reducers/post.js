@@ -129,9 +129,6 @@ const reducer = (state = initialState, action) => {
       case ADD_POST_DIR_SUCCESS:
         draft.addPostDirLoading = false;
         draft.addPostDirDone = true;
-        setTimeout(() => {
-          draft.addPostDirDone = false;
-        }, 1000);
         break;
       case ADD_POST_DIR_FAILURE:
         draft.addPostDirLoading = false;

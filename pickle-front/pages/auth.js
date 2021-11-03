@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Router from "next/router";
 import Image from "next/image";
 
-import { backUrl } from "../config/config";
 import Logo from "../public/favicon.png";
 import Google from "../public/img/google2.png";
 import Kakao from "../public/img/kakao2.png";
@@ -13,7 +12,9 @@ import axios from "axios";
 import { LOAD_MY_INFO_REQUEST } from "../reducers/user";
 import { END } from "redux-saga";
 
-const Login = () => {
+const url = "";
+
+const Auth = () => {
   const { me } = useSelector((state) => state.user);
   const mode = process.env.NODE_ENV === "development";
 
@@ -26,7 +27,7 @@ const Login = () => {
 
   const onClickKakao = useCallback(() => {
     if (!mode) {
-      Router.replace(`${backUrl}/login/kakao`);
+      Router.replace(`${url}/login/kakao`);
     } else {
       Router.replace(`http://localhost:3065/login/kakao`);
     }
@@ -34,7 +35,7 @@ const Login = () => {
 
   const onClickGoogle = useCallback(() => {
     if (!mode) {
-      Router.replace(`${backUrl}/login/google`);
+      Router.replace(`${url}/login/google`);
     } else {
       Router.replace(`http://localhost:3065/login/kakao`);
     }
@@ -105,4 +106,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
   },
 );
 
-export default Login;
+export default Auth;

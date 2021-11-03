@@ -58,7 +58,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// 포스트와 디렉토리 동시 추가 ( 브라우저 확장 프로그램에서 추가할 때 )
+// 포스트와 디렉토리 동시 추가
 router.post("/directory", isLoggedIn, async (req, res, next) => {
   try {
     const data = await urlMetadata(req.body.url);
@@ -86,7 +86,6 @@ router.post("/directory", isLoggedIn, async (req, res, next) => {
         UserId: req.user.dataValues.id,
         order: order,
       });
-
       // 포스트 생성
       const newPost = await Post.create({
         url: data.url || data["og:url"],
@@ -101,7 +100,7 @@ router.post("/directory", isLoggedIn, async (req, res, next) => {
         ),
         favorite: false,
         UserId: req.user.dataValues.id,
-        DirectoryId: req.body.dirId ? req.body.dirId : null,
+        DirectoryId: newDir.dataValues.id,
       });
 
       res.send({ newPost, newDir });

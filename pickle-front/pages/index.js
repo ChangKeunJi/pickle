@@ -21,7 +21,7 @@ const Home = ({ type }) => {
   // 클라이언트 상에서 유저 정보 없으면 로그인 화면으로 이동
   useEffect(() => {
     if (!me) {
-      Router.push("/login");
+      Router.push("/auth");
     }
   }, [me]);
 
@@ -90,7 +90,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       return {
         redirect: {
           permanent: false,
-          destination: "/login",
+          destination: "/auth",
         },
       };
     }

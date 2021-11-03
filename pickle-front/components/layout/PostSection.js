@@ -17,6 +17,8 @@ const PostSection = ({ type }) => {
   const [initialSort, setInitialSort] = useState(true);
   const [sort, setSort] = useState(initialSort);
   const [mounted, setMounted] = useState(false);
+
+  // 정렬 순서를 결정한다.
   useEffect(() => {
     let boolean;
     if (
@@ -41,7 +43,7 @@ const PostSection = ({ type }) => {
     } else if (type === "fav") {
       setDirName("즐겨찾기");
     }
-  }, [id]);
+  }, [id, allDirs]);
 
   // 화면에 보여 줄 리스트를 정렬 설정에 따라 변경해준다.
   const decideList = useCallback(() => {

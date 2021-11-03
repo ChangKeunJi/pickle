@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Router from "next/router";
 import { useSelector } from "react-redux";
 
+import { summarizeStr } from "../../hooks/helper";
 import UpdateAndDeleteDir from "../utility/Modal/UpdateAndDeleteDir";
 
 const Directory = ({ dir, index, setOpenMenu }) => {
@@ -12,13 +13,6 @@ const Directory = ({ dir, index, setOpenMenu }) => {
 
   // 설정 아이콘은 Directory 컴포넌트가 호버 될 때만 보여준다.
   const [hover, setHover] = useState(false);
-
-  // 이름이 일정 길이 이상 넘어가면 "..." 처리
-  let name = dir.name;
-  if (name.length > 16) {
-    name = name.slice(0, 16);
-    name += "...";
-  }
 
   // 카테고리를 클릭하면 카테고리에 포함된 게시물만 보여준다.
   const onClickDir = useCallback((e) => {
@@ -62,7 +56,7 @@ const Directory = ({ dir, index, setOpenMenu }) => {
         >
           <div className="flex">
             <span> &gt; </span>
-            <p className="ml-2">{name}</p>
+            <p className="ml-2">{summarizeStr(dir.name, 15)}</p>
           </div>
 
           <div ref={ref} className={hover ? "block" : "hidden"}>
