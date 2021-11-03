@@ -4,7 +4,7 @@ const passport = require("passport");
 const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
-const frontUrl = "http://3.38.99.75";
+const frontUrl = "http://52.78.8.137";
 
 // 유저 정보 불러오기
 router.get("/", async (req, res) => {
@@ -32,9 +32,10 @@ router.get(
       res.redirect("http://localhost:3000");
     } else {
       // 배포환경
-      res.redirect(
-        `http://3.38.99.75/api/login?sid=${sessionId}&pid=${passportId}`
-      );
+      // res.redirect(
+      //   `http://${frontUrl}/api/login?sid=${sessionId}&pid=${passportId}`
+      // );
+      res.redirect(frontUrl);
     }
   }
 );

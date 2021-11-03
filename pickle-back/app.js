@@ -69,9 +69,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-  res.send("Hello API");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello API");
+// });
 
 app.use("/post", postRouter);
 app.use("/login", loginRouter);
