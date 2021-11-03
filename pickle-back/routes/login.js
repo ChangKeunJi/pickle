@@ -4,18 +4,16 @@ const passport = require("passport");
 const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
-const frontUrl = process.env// 유저 정보 불러오기
-.router
-  .get("/", async (req, res) => {
-    if (req.user) {
-      const user = await User.findOne({
-        where: { id: req.user.dataValues.id },
-      });
-      res.send(user);
-    } else {
-      res.send("null");
-    }
-  });
+router.get("/", async (req, res) => {
+  if (req.user) {
+    const user = await User.findOne({
+      where: { id: req.user.dataValues.id },
+    });
+    res.send(user);
+  } else {
+    res.send("null");
+  }
+});
 
 // 카카오 로그인
 router.get("/kakao", passport.authenticate("kakao"));
@@ -34,7 +32,7 @@ router.get(
       // res.redirect(
       //   `http://${frontUrl}/api/login?sid=${sessionId}&pid=${passportId}`
       // );
-      res.redirect(frontUrl);
+      res.redirect("http://52.79.235.32");
     }
   }
 );
@@ -50,7 +48,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(frontUrl);
+    res.redirect("http://52.79.235.32");
   }
 );
 
