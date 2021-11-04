@@ -5,6 +5,8 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
+  console.log(req.session, "🍎");
+
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -28,8 +30,8 @@ router.get(
       // 개발환경
       res.redirect("http://localhost:3000");
     } else {
-      console.log(req.sessionID, "🍎");
-      res.redirect("http://3.36.254.124");
+      // res.redirect("http://3.36.254.124");
+      res.writeHead(302, { Location: "http://3.36.254.124" });
     }
   }
 );
