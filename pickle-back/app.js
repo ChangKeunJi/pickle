@@ -26,30 +26,28 @@ db.sequelize
   })
   .catch(console.error);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(morgan("combined"));
-  app.use(hpp());
-  app.use(helmet());
-  app.use(
-    cors({
-      origin: frontUrl,
-      credentials: true,
-    })
-  );
-} else {
-  app.use(morgan("dev"));
-  app.use(
-    cors({
-      origin: true,
-      credentials: true,
-    })
-  );
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(morgan("combined"));
+//   app.use(hpp());
+//   app.use(helmet());
+//   app.use(
+//     cors({
+//       origin: frontUrl,
+//       credentials: true,
+//     })
+//   );
+// }
+app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 //! ----------
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //! ----------
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -61,12 +59,11 @@ app.use(
     // proxy: process.env.NODE_ENV === "production",
     cookie: {
       maxAge: 315360000000, // 10년 : 1000 * 60 * 60 * 24 * 365 * 10
-      domain: process.env.NODE_ENV === "production" && frontUrl,
+      // domain: process.env.NODE_ENV === "production" && frontUrl,
       // httpOnly: true,
       // secure: process.env.NODE_ENV === "production",
       httpOnly: false,
       secure: false,
-      sameSite: "none",
     },
     store: new SequelizeStore({
       db: db.sequelize,

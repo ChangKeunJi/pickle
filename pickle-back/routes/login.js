@@ -5,8 +5,6 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
-  // console.log(req.session, "🍎");
-
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -28,7 +26,7 @@ router.get(
   async (req, res) => {
     if (mode === "development") {
       // 개발환경
-      console.log(req, "🥭");
+      console.log(req.cookies, "🍎");
       res.redirect("http://localhost:3000");
     } else {
       // console.log(req.user, "🥭");
