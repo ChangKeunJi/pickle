@@ -33,7 +33,6 @@ router.get(
       res.redirect("http://localhost:3000");
     } else {
       console.log(req.user, "🥭");
-      req.req.user = req.user;
       res.redirect("http://3.36.254.124");
     }
   }
