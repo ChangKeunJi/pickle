@@ -5,7 +5,7 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
-  console.log(req.session, "🍎");
+  // console.log(req.session, "🍎");
 
   if (req.user) {
     const user = await User.findOne({
@@ -32,7 +32,7 @@ router.get(
 
       res.redirect("http://localhost:3000");
     } else {
-      console.log(req.user, "🥭");
+      // console.log(req.user, "🥭");
       res.redirect("http://3.36.254.124");
     }
   }

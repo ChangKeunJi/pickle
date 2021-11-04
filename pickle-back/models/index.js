@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   config
 );
 
-sequelize.sync({ force: true });
+// sequelize.sync({ force: true });
 
 const user = require("./user")(sequelize, Sequelize);
 const post = require("./post")(sequelize, Sequelize);
