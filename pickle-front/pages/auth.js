@@ -29,7 +29,9 @@ const Auth = () => {
     if (!mode) {
       Router.replace(`${backUrl}/login/kakao`);
     } else {
-      Router.replace(`http://localhost:3065/login/kakao`);
+      console.log("🍏🍏🍏🍏🍏🍏🍏🍏");
+      // Router.replace(`http://localhost:3065/login/kakao`);
+      window.location.href = `http://localhost:3065/login/kakao`;
     }
   }, [mode]);
 
