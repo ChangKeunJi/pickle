@@ -27,10 +27,9 @@ const Auth = () => {
 
   const onClickKakao = useCallback(() => {
     if (!mode) {
-      Router.replace(`${backUrl}/login/kakao`);
+      window.location.href = `${backUrl}/login/kakao`;
     } else {
       console.log("🍏🍏🍏🍏🍏🍏🍏🍏");
-      // Router.replace(`http://localhost:3065/login/kakao`);
       window.location.href = `http://localhost:3065/login/kakao`;
     }
   }, [mode]);
