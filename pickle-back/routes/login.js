@@ -5,8 +5,6 @@ const mode = process.env.NODE_ENV;
 const { User } = require("../models");
 
 router.get("/", async (req, res) => {
-  // console.log(req.headers, "🍎");
-  // console.log(req.session, "🍎");
   if (req.user) {
     const user = await User.findOne({
       where: { id: req.user.dataValues.id },
@@ -30,12 +28,6 @@ router.get(
       // 개발환경
       res.redirect("http://localhost:3000");
     } else {
-      // 배포환경
-      // res.redirect(
-      //   `http://${frontUrl}/api/login?sid=${sessionId}&pid=${passportId}`
-      // );
-      // console.log(req.headers, "🍎");
-      // console.log(req.session, "🍎");
       console.log(req.sessionID, "🍎");
       res.redirect("http://3.36.254.124");
     }
