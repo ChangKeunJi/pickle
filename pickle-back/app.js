@@ -13,6 +13,7 @@ const loginRouter = require("./routes/login");
 const directoryRouter = require("./routes/directory");
 const db = require("./models");
 const passportConfig = require("./passport");
+const frontUrl = "http://3.36.254.124";
 
 dotenv.config();
 const app = express();
@@ -29,17 +30,21 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet());
+  app.use(
+    cors({
+      origin: frontUrl,
+      credentials: true,
+    })
+  );
 } else {
   app.use(morgan("dev"));
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    })
+  );
 }
-
-const frontUrl = "http://3.36.254.124";
-app.use(
-  cors({
-    origin: [true, "http://localhost:3000", frontUrl, "pickle-pickle.kr"],
-    credentials: true,
-  })
-);
 
 //! ----------
 const SequelizeStore = require("connect-session-sequelize")(session.Store);

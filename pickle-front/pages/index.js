@@ -63,6 +63,12 @@ Home.propTypes = {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
+  // (store) => async (req, res, next) => {
+  //   const cookie = req.req ? req.req.headers.cookie : "";
+  //   axios.defaults.headers.Cookie = "";
+  //   if (req.req && cookie) {
+  //     axios.defaults.headers.Cookie = cookie;
+  //   }
   (store) => async (req, res, next) => {
     const cookie = req.req ? req.req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
