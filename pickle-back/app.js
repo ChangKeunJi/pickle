@@ -66,6 +66,7 @@ app.use(
       // secure: process.env.NODE_ENV === "production",
       httpOnly: false,
       secure: false,
+      sameSite: "none",
     },
     store: new SequelizeStore({
       db: db.sequelize,

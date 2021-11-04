@@ -33,7 +33,8 @@ router.get(
     } else {
       // console.log(req.user, "🥭");
       // res.cookie("connect.sid", req.sessionID);
-      res.redirect("http://3.36.254.124/api/login");
+      res.redirect("http://3.36.254.124");
+      // res.redirect("http://3.36.254.124/api/login");
     }
   }
 );
