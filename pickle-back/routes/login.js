@@ -28,7 +28,7 @@ router.get(
   async (req, res) => {
     if (mode === "development") {
       // 개발환경
-      console.log(res, "🥭");
+      console.log(req, "🥭");
 
       res.redirect("http://localhost:3000");
     } else {

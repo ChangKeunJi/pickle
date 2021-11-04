@@ -29,7 +29,7 @@ db.sequelize
 if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
-  // app.use(helmet());
+  app.use(helmet());
   app.use(
     cors({
       origin: frontUrl,
@@ -49,8 +49,8 @@ if (process.env.NODE_ENV === "production") {
 //! ----------
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 //! ----------
-// app.use(cookieParser(process.env.COOKIE_SECRET));
-// app.set("trust proxy", 1);
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
