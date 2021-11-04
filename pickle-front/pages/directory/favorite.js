@@ -13,33 +13,39 @@ const Favorite = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (req, res, next) => {
-    const cookie = req.req ? req.req.headers.cookie : "";
+  async (context) => {
+    const cookie = context.req ? context.req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
-    if (req.req && cookie) {
+    if (context.req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
+    // (store) => async (req, res, next) => {
+    //   const cookie = req.req ? req.req.headers.cookie : "";
+    //   axios.defaults.headers.Cookie = "";
+    //   if (req.req && cookie) {
+    //     axios.defaults.headers.Cookie = cookie;
+    //   }
 
-    store.dispatch({
+    context.store.dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
 
-    store.dispatch({
+    context.store.dispatch({
       type: LOAD_DIR_REQUEST,
     });
 
-    store.dispatch({
+    context.store.dispatch({
       type: LOAD_FAV_POST_REQUEST,
     });
 
-    store.dispatch({
+    context.store.dispatch({
       type: LOAD_POST_REQUEST,
     });
 
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
 
-    const { user } = store.getState();
+    const { user } = context.store.getState();
     if (!user.me) {
       return {
         redirect: {
