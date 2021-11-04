@@ -13,7 +13,6 @@ const loginRouter = require("./routes/login");
 const directoryRouter = require("./routes/directory");
 const db = require("./models");
 const passportConfig = require("./passport");
-const frontUrl = "http://3.36.254.124";
 
 dotenv.config();
 const app = express();
@@ -32,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(
     cors({
-      origin: frontUrl,
+      origin: "http://3.36.254.124",
       credentials: true,
     })
   );
@@ -61,6 +60,7 @@ app.use(
       maxAge: 315360000000, // 10년 : 1000 * 60 * 60 * 24 * 365 * 10
       httpOnly: false,
       secure: false,
+      // domain: process.env.NODE_ENV === "production" && ".pickle-pickle.kr",
     },
     store: new SequelizeStore({
       db: db.sequelize,
