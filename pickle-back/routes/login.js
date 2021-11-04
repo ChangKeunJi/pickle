@@ -32,8 +32,8 @@ router.get(
       res.redirect("http://localhost:3000");
     } else {
       // console.log(req.user, "🥭");
-      res.cookie("connect.sid", req.sessionID);
-      res.redirect("http://3.36.254.124");
+      // res.cookie("connect.sid", req.sessionID);
+      res.redirect("http://3.36.254.124/api/login");
     }
   }
 );
