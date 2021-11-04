@@ -29,7 +29,7 @@ router.get(
       console.log(req.cookies, "🍎");
       res.redirect("http://localhost:3000");
     } else {
-      res.redirect("http://3.36.254.124");
+      res.redirect("https://pickle-pickle.kr");
     }
   }
 );

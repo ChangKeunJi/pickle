@@ -29,7 +29,6 @@ const Auth = () => {
     if (!mode) {
       window.location.href = `${backUrl}/login/kakao`;
     } else {
-      console.log("🍏🍏🍏🍏🍏🍏🍏🍏");
       window.location.href = `http://localhost:3065/login/kakao`;
     }
   }, [mode]);
