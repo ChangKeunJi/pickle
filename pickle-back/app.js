@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(
     cors({
-      origin: "http://3.36.254.124",
+      origin: "https://pickle-pickle.kr",
       credentials: true,
     })
   );
@@ -60,7 +60,7 @@ app.use(
       maxAge: 315360000000, // 10년 : 1000 * 60 * 60 * 24 * 365 * 10
       httpOnly: false,
       secure: false,
-      // domain: process.env.NODE_ENV === "production" && ".pickle-pickle.kr",
+      domain: process.env.NODE_ENV === "production" && ".pickle-pickle.kr",
     },
     store: new SequelizeStore({
       db: db.sequelize,
@@ -75,14 +75,6 @@ app.use("/post", postRouter);
 app.use("/login", loginRouter);
 app.use("/directory", directoryRouter);
 
-const mode = process.env.NODE_ENV === "development";
-
-if (mode) {
-  app.listen(3065, () => {
-    console.log("실행 중");
-  });
-} else {
-  app.listen(3065, () => {
-    console.log("실행 중");
-  });
-}
+app.listen(3065, () => {
+  console.log("실행 중");
+});

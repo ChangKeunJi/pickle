@@ -26,7 +26,6 @@ router.get(
   async (req, res) => {
     if (mode === "development") {
       // 개발환경
-      console.log(req.cookies, "🍎");
       res.redirect("http://localhost:3000");
     } else {
       res.redirect("https://pickle-pickle.kr");
@@ -45,7 +44,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("http://3.36.254.124");
+    res.redirect("https://pickle-pickle.kr");
   }
 );
 
