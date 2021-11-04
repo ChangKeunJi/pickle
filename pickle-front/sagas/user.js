@@ -12,7 +12,13 @@ import {
 
 // 유저 정보 불러오기
 async function logInAPI() {
-  return axios.get("/login");
+  return axios.get("/login", {
+    withCredentials: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 function* logIn() {
