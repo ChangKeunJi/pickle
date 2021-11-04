@@ -28,10 +28,12 @@ router.get(
   async (req, res) => {
     if (mode === "development") {
       // 개발환경
+      console.log(res, "🥭");
+
       res.redirect("http://localhost:3000");
     } else {
-      // res.redirect("http://3.36.254.124");
-      res.writeHead(302, { Location: "http://3.36.254.124" });
+      console.log(res, "🥭");
+      res.redirect("http://3.36.254.124");
     }
   }
 );

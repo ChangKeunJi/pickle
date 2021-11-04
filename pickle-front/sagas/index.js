@@ -7,7 +7,7 @@ import directorySaga from "./directory";
 import { backUrl } from "../config/config";
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development" ? "http://localhost:3065" : backUrl;
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
   yield all([fork(postSaga), fork(userSaga), fork(directorySaga)]);
