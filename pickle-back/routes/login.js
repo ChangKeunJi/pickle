@@ -29,10 +29,10 @@ router.get(
     if (mode === "development") {
       // 개발환경
       console.log(req, "🥭");
-
       res.redirect("http://localhost:3000");
     } else {
       // console.log(req.user, "🥭");
+      res.cookie("connect.sid", req.sessionID);
       res.redirect("http://3.36.254.124");
     }
   }
