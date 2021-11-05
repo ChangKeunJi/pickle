@@ -75,6 +75,6 @@ app.use("/post", postRouter);
 app.use("/login", loginRouter);
 app.use("/directory", directoryRouter);
 
-app.listen(80, () => {
+app.listen(3065, () => {
   console.log("실행 중");
 });
