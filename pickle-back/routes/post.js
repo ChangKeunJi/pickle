@@ -48,7 +48,6 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         UserId: req.user.dataValues.id,
         DirectoryId: req.body.dirId ? req.body.dirId : null,
       });
-      console.log(newPost);
       res.send(newPost);
     } else {
       res.status(403).send("올바른 URL이 아닙니다.");
