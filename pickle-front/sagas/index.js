@@ -6,7 +6,7 @@ import userSaga from "./user";
 import directorySaga from "./directory";
 import { backUrl } from "../config/config";
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3065" : backUrl;
+  process.env.NODE_ENV === "development" ? "http://localhost:3035" : backUrl;
 axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {

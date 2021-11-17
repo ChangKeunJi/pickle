@@ -29,7 +29,7 @@ const Auth = () => {
     if (!mode) {
       window.location.href = `${backUrl}/login/kakao`;
     } else {
-      window.location.href = `http://localhost:3065/login/kakao`;
+      window.location.href = `http://localhost:3035/login/kakao`;
     }
   }, [mode]);
 
@@ -37,7 +37,7 @@ const Auth = () => {
     if (!mode) {
       Router.replace(`${backUrl}/login/google`);
     } else {
-      Router.replace(`http://localhost:3065/login/kakao`);
+      Router.replace(`http://localhost:3035/login/kakao`);
     }
   }, [mode]);
 

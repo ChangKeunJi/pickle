@@ -29,25 +29,24 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet());
-  app.use(
-    cors({
-      origin: "https://pickle-pickle.kr",
-      credentials: true,
-    })
-  );
+  // app.use(
+  //   cors({
+  //     origin: "https://pickle-pickle.kr",
+  //     credentials: true,
+  //   })
+  // );
 } else {
   app.use(morgan("dev"));
-  app.use(
-    cors({
-      origin: true,
-      credentials: true,
-    })
-  );
 }
 
-//! ----------
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-//! ----------
+
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -75,6 +74,12 @@ app.use("/post", postRouter);
 app.use("/login", loginRouter);
 app.use("/directory", directoryRouter);
 
-app.listen(3065, () => {
-  console.log("실행 중");
-});
+if (process.env.NODE_ENV === "production") {
+  app.listen(3065, () => {
+    console.log("실행 중");
+  });
+} else {
+  app.listen(3035, () => {
+    console.log("실행 중");
+  });
+}
