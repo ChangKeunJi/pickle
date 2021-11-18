@@ -158,4 +158,5 @@ AddDirModal.propTypes = {
   update: PropTypes.bool,
   id: PropTypes.number,
   name: PropTypes.string,
+  setOpenMenu: PropTypes.func,
 };
