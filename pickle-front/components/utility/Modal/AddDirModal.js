@@ -10,12 +10,13 @@ import {
 } from "../../../reducers/directory";
 import { joinClass } from "../../../hooks/helper";
 
-const AddDirModal = ({ update, id, name }) => {
+const AddDirModal = ({ update, id, name, setOpenMenu }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const onClickOpenModal = useCallback(() => {
     setOpen((open) => !open);
+    setOpenMenu(false);
   }, []);
 
   const onChangeInput = useCallback(

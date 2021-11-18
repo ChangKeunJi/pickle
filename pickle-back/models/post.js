@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       desc: {
         type: DataTypes.STRING(202),
       },
-      favicon: {
-        type: DataTypes.STRING(2048),
-      },
       author: {
         type: DataTypes.STRING(102),
       },

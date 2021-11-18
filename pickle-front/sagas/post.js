@@ -1,4 +1,11 @@
-import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import {
+  all,
+  call,
+  fork,
+  put,
+  takeLatest,
+  takeEvery,
+} from "redux-saga/effects";
 import axios from "axios";
 import {
   ADD_POST_FAILURE,
@@ -128,7 +135,8 @@ function* deletePost(action) {
 }
 
 function* watchDeletePost() {
-  yield takeLatest(DELETE_POST_REQUEST, deletePost);
+  // yield takeLatest(DELETE_POST_REQUEST, deletePost);
+  yield takeEvery(DELETE_POST_REQUEST, deletePost);
 }
 
 // 포스트 즐겨찾기 추가

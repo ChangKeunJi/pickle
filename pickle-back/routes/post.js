@@ -38,8 +38,6 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         thumbnail: data["og:image"] || data.image,
         title: summarizeStr(data.title || data["og:title"], 100),
         desc: summarizeStr(data.description || data["og:description"], 200),
-        favicon:
-          data["og:image"] || data["msapplication-TileImage"] || data.image,
         author: summarizeStr(
           data.author || data["og:site_name"] || data.source,
           100
@@ -92,8 +90,6 @@ router.post("/directory", isLoggedIn, async (req, res, next) => {
         thumbnail: data["og:image"] || data.image,
         title: summarizeStr(data.title || data["og:title"], 100),
         desc: summarizeStr(data.description || data["og:description"], 200),
-        favicon:
-          data["og:image"] || data["msapplication-TileImage"] || data.image,
         author: summarizeStr(
           data.author || data["og:site_name"] || data.source,
           100

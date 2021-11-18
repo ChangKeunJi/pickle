@@ -77,7 +77,7 @@ const Post = ({ post, dirName }) => {
       <div className="flex z-0 relative items-start justify-between flex-col p-4 h-full">
         {dirName && hover ? (
           <div className="absolute z-50 top-6 left-6 bg-white shadow-md py-1 px-2 rounded-full">
-            <p className="tracking-widest text-lg">
+            <p className="tracking-widest text-lg dark:text-black">
               {summarizeStr(dirName, 15)}
             </p>
           </div>
@@ -86,21 +86,18 @@ const Post = ({ post, dirName }) => {
           <img
             src={post.thumbnail || "/img/logoNav.png"}
             className={joinClass(
-              hover && dirName ? "filter brightness-75" : "",
+              hover ? "filter brightness-50" : "",
               "card-image w-full rounded-2xl border border-gray shadow-sm object-cover dark:border-dark-black-light",
             )}
           />
           <div className="font-semibold w-full">
-            {summarizeStr(post.title, 50)}
+            {summarizeStr(post.title, 25)}
           </div>
-          <div className="text-sm w-full">{summarizeStr(post.desc, 70)}</div>
+          <div className="text-xs w-full">{summarizeStr(post.desc, 120)}</div>
         </div>
         <div className="flex justify-between w-full h-10">
-          <div className="flex items-center gap-4 w-7/12 h-full">
-            <div className="w-5 h-5 flex-center">
-              <img src={post.favicon} />
-            </div>
-            <div className="text-xs">{summarizeStr(post.author, 12)}</div>
+          <div className="flex items-center w-7/12 h-full">
+            <div className="text-sm">{summarizeStr(post.author, 20)}</div>
           </div>
           <div
             className={

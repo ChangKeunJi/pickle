@@ -50,7 +50,8 @@
     }
 
     .card {
-        height: 23rem;
+        /*height: 23rem;*/
+        height: 21rem;
     }
 
     .card-image {

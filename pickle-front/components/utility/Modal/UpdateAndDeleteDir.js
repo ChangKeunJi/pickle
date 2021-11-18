@@ -14,11 +14,12 @@ const UpdateAndDeleteDir = ({ id, name }) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  const { dirPosts } = useSelector((state) => state.post);
+  const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     if (confirm) {
       // 카테고리 속해있는 북마크 삭제
+      const dirPosts = allPosts.filter((post) => post.DirectoryId === id);
       dirPosts.map((el) => {
         dispatch({
           type: DELETE_POST_REQUEST,
@@ -33,7 +34,7 @@ const UpdateAndDeleteDir = ({ id, name }) => {
       setConfirm(false);
       router.push("/");
     }
-  }, [confirm]);
+  }, [confirm, allPosts]);
 
   return (
     <div className="flex">

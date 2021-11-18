@@ -56,7 +56,7 @@ const Auth = () => {
         <div className="h-48 flex items-center justify-around flex-col  h-64">
           <button
             onClick={onClickGoogle}
-            className="button-width button-height border border-gray-dark border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
+            className="z-10 button-width bg-white button-height border border-gray-dark border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
           >
             <div className="inline mr-3 flex-center">
               <Image src={Google} width={20} height={20} />
@@ -70,7 +70,7 @@ const Auth = () => {
             <Image src={Kakao} />
           </button>
         </div>
-        <div className="hidden md:block md:mr-20 md:absolute md:bottom-24 md:right-6 ">
+        <div className="hidden lg:block md:mr-20 md:absolute md:bottom-24 md:right-6 ">
           <Image src={login_background} width={600} height={200} />
         </div>
       </div>

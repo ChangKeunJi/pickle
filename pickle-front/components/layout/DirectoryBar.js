@@ -125,7 +125,7 @@ const DirectoryBar = ({ setOpenMenu }) => {
           </DragDropContext>
         </div>
         <div className="w-full flex-center py-3">
-          <AddDirModal />
+          <AddDirModal setOpenMenu={setOpenMenu} />
         </div>
       </div>
     </div>
