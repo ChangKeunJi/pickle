@@ -50,7 +50,7 @@ const Home = ({ type }) => {
         >
           <DirectoryBar setOpenMenu={setOpenMenu} />
         </div>
-        <div className="flex-1 min-h-screen md:ml-80 md:mr-8 border-l shadow border-gray dark:border-dark-black-light">
+        <div className="flex-1 min-h-screen md:ml-80 md:mr-8 border-l border-gray dark:border-dark-black-light">
           <PostSection type={type || "all"} />
         </div>
       </div>

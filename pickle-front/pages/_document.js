@@ -39,10 +39,6 @@ export default class MyDocument extends Document {
             property="twitter:description"
             content="세상에서 가장 심플한 북마크 관리 서비스"
           />
-          {/*<meta*/}
-          {/*  name="twitter:image"*/}
-          {/*  content=""*/}
-          {/*/>*/}
           <meta name="twitter:url" cotent="https://www.pickle-pickle.kr" />
         </Head>
         <body>

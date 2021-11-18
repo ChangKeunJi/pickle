@@ -35,9 +35,9 @@ const Auth = () => {
 
   const onClickGoogle = useCallback(() => {
     if (!mode) {
-      Router.replace(`${backUrl}/login/google`);
+      window.location.href = `${backUrl}/login/google`;
     } else {
-      Router.replace(`http://localhost:3035/login/kakao`);
+      window.location.href = `http://localhost:3035/login/kakao`;
     }
   }, [mode]);
 

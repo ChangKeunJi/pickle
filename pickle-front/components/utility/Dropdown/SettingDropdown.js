@@ -31,7 +31,15 @@ const SettingDropdown = () => {
         <div className="flex items-center pl-4 hover:bg-gray-dark dark:hover:bg-dark-black-light">
           <DarkmodeToggle />
         </div>
-        <div className="flex-center hover:bg-gray-dark dark:hover:bg-dark-black-light">
+        <div
+          onClick={() =>
+            window.open(
+              "https://pickle-pickle.notion.site/pickle-pickle/P-I-C-K-L-E-15bb7bc5c886487cb976a9a88d4410c7",
+              "_blank",
+            )
+          }
+          className="flex-center hover:bg-gray-dark dark:hover:bg-dark-black-light"
+        >
           <InformationCircleIcon className="w-5 h-5 mr-1" />
           정보
         </div>
