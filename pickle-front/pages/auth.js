@@ -42,39 +42,41 @@ const Auth = () => {
   }, [mode]);
 
   return (
-    <section className="container mt-12">
-      <div className="grid gap-16 grid-col-1 text-center">
-        <div className="flex-center flex-col">
-          <Image src={Logo} width={70} height={70} />
-          <h1 className="text-3xl mt-4 italic">피클</h1>
+    <div className="h-screen w-screen dark:bg-white dark:text-black">
+      <section className="container pt-12">
+        <div className="grid gap-16 grid-col-1 text-center">
+          <div className="flex-center flex-col">
+            <Image src={Logo} width={70} height={70} />
+            <h1 className="text-3xl mt-4 italic">피클</h1>
+          </div>
+          <div>
+            <p className="sm:text-4xl text-xl">
+              세상에서 가장 심플한 북마크 관리 서비스
+            </p>
+          </div>
+          <div className="h-48 flex items-center justify-around flex-col  h-64">
+            <button
+              onClick={onClickGoogle}
+              className="z-10 button-width bg-white button-height border border-gray-dark border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
+            >
+              <div className="inline mr-3 flex-center">
+                <Image src={Google} width={20} height={20} />
+              </div>
+              <p>Google 로그인</p>
+            </button>
+            <button
+              onClick={onClickKakao}
+              className="z-10 button-height shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200 hover:border-none"
+            >
+              <Image src={Kakao} />
+            </button>
+          </div>
+          <div className="hidden lg:block md:mr-20 md:absolute md:bottom-24 md:right-6 ">
+            <Image src={login_background} width={600} height={200} />
+          </div>
         </div>
-        <div>
-          <p className="sm:text-4xl text-xl">
-            세상에서 가장 심플한 북마크 관리 서비스
-          </p>
-        </div>
-        <div className="h-48 flex items-center justify-around flex-col  h-64">
-          <button
-            onClick={onClickGoogle}
-            className="z-10 button-width bg-white button-height border border-gray-dark border-radius w-80 py-2 flex-center shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200"
-          >
-            <div className="inline mr-3 flex-center">
-              <Image src={Google} width={20} height={20} />
-            </div>
-            <p>Google 로그인</p>
-          </button>
-          <button
-            onClick={onClickKakao}
-            className="z-10 button-height shadow-md hover:-translate-y-1 hover:shadow-lg transition duration-200 hover:border-none"
-          >
-            <Image src={Kakao} />
-          </button>
-        </div>
-        <div className="hidden lg:block md:mr-20 md:absolute md:bottom-24 md:right-6 ">
-          <Image src={login_background} width={600} height={200} />
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

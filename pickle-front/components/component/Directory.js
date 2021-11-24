@@ -60,7 +60,11 @@ const Directory = ({ dir, index, setOpenMenu }) => {
           </div>
 
           <div ref={ref} className={hover ? "block" : "hidden"}>
-            <UpdateAndDeleteDir id={dir.id} name={dir.name} />
+            <UpdateAndDeleteDir
+              id={dir.id}
+              name={dir.name}
+              setOpenMenu={setOpenMenu}
+            />
           </div>
           <div className={hover ? "hidden" : "block"}>
             <p className="mr-2 text-sm text-orange">{renderNumber()}</p>

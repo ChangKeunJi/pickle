@@ -107,10 +107,10 @@ const AddDirModal = ({ update, id, name, setOpenMenu }) => {
               >
                 <form
                   onSubmit={onSubmit}
-                  className="inline-block z-50 relative align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                  className="inline-block bg-gray border border-gray-dark dark:text-black z-50 relative align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                   autoComplete="off"
                 >
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                         <Dialog.Title
@@ -123,7 +123,7 @@ const AddDirModal = ({ update, id, name, setOpenMenu }) => {
                           <div className="mt-1 relative rounded-md shadow-sm">
                             <input
                               type="text"
-                              className="p-2 block w-full pr-12 sm:text-sm rounded-md shadow-md"
+                              className="p-2 block w-full pr-12 sm:text-sm rounded-md shadow-md dark:bg-white outline-none"
                               placeholder="카테고리 이름"
                               onChange={onChangeInput}
                               value={inputValue}
@@ -137,7 +137,7 @@ const AddDirModal = ({ update, id, name, setOpenMenu }) => {
                   <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex-center sm:flex-row-reverse">
                     <button
                       type="submit"
-                      className="w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                      className="w-full bg-gray-dark inline-flex justify-center rounded-md shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
                       추가하기
                     </button>

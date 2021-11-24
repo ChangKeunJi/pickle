@@ -9,7 +9,7 @@ import { DELETE_DIR_REQUEST } from "../../../reducers/directory";
 import { DELETE_POST_REQUEST } from "../../../reducers/post";
 import DeleteModal from "./DeleteModal";
 
-const UpdateAndDeleteDir = ({ id, name }) => {
+const UpdateAndDeleteDir = ({ id, name, setOpenMenu }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -38,7 +38,12 @@ const UpdateAndDeleteDir = ({ id, name }) => {
 
   return (
     <div className="flex">
-      <AddDirModal update={true} id={id} name={name} />
+      <AddDirModal
+        update={true}
+        id={id}
+        name={name}
+        setOpenMenu={setOpenMenu}
+      />
       <div
         onClick={() => setModal(true)}
         className="cursor-pointer w-8 h-8 hover:bg-gray-dark flex-center rounded-full dark:hover:bg-dark-black"
