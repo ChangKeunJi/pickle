@@ -29,7 +29,6 @@ export default class MyDocument extends Document {
             content="세상에서 가장 심플한 북마크 관리 서비스"
           />
           <meta property="og:site_name" content="Pickle" />
-          {/*<meta property="og:image" content="" />*/}
           <meta property="og:url" content="https://www.pickle-pickle.kr" />
           <meta
             name="twitter:title"

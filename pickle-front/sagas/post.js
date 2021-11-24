@@ -135,7 +135,6 @@ function* deletePost(action) {
 }
 
 function* watchDeletePost() {
-  // yield takeLatest(DELETE_POST_REQUEST, deletePost);
   yield takeEvery(DELETE_POST_REQUEST, deletePost);
 }
 
