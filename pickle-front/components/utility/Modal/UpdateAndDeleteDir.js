@@ -66,4 +66,5 @@ export default UpdateAndDeleteDir;
 UpdateAndDeleteDir.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
+  setOpenMenu: PropTypes.func,
 };
