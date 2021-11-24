@@ -28,7 +28,6 @@ module.exports = () => {
               snsId: profile.id,
               provider: "google",
             });
-            console.log(newUser);
             cb(null, newUser);
           }
         } catch (err) {
