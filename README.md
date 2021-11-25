@@ -6,9 +6,6 @@
 <a href="https://chrome.google.com/webstore/detail/%ED%94%BC%ED%81%B4-pickle/jdmpojhcjjcgfgalpabbmfcpefjampid" target="_blank">크롬 웹 스토어에서 다운 받기
 </a>
 
-<a href="https://pickle-pickle.kr" target="_blank">웹 페이지 구경하기
-</a>
-
 # 제작기
 
 <a href="https://changkeun-devlog.tistory.com/36" target="_blank">피클 - 1. 만들게 된 계기와 사용한 기술
