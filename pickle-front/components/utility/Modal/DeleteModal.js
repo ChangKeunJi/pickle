@@ -92,7 +92,7 @@ const DeleteModal = ({ type, setModal, setConfirm }) => {
                 </button>
                 <button
                   type="button"
-                  className="outline-none mt-3 w-full inline-flex justify-center rounded-lg border shadow-sm px-4 py-2 bg-white text-base font-medium active:-translate-y-0.5 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="outline-none mt-3 w-full inline-flex justify-center rounded-lg border shadow-sm px-4 py-2 bg-white text-base font-medium dark:text-black active:-translate-y-0.5 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => setOpen(false)}
                   ref={cancelButtonRef}
                 >
